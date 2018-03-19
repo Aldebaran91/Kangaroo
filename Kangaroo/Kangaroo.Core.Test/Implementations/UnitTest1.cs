@@ -1,9 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Kangaroo.Core.Test.Implementations
 {
     [TestClass]
-    public class FirstTest
+    public class UnitTest1
     {
         [TestMethod]
         public void TestMethod1()
