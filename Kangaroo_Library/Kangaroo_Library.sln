@@ -3,9 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.Core", "Kangaroo.Core\Kangaroo.Core.csproj", "{AB236705-C82F-46D9-905E-2F552D140A1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Core.Test", "Kangaroo.Core.Test\Kangaroo.Core.Test.csproj", "{222CE8EE-419E-4049-AAC1-A8D47FE93A2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B366AA40-F9AE-4DAF-9394-D7DCD8F6F115}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchAndReportException", "CatchAndReportException\CatchAndReportException.csproj", "{BEA3E8A1-59F1-40CF-93EB-0E2684941BB2}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB236705-C82F-46D9-905E-2F552D140A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB236705-C82F-46D9-905E-2F552D140A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB236705-C82F-46D9-905E-2F552D140A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB236705-C82F-46D9-905E-2F552D140A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222CE8EE-419E-4049-AAC1-A8D47FE93A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222CE8EE-419E-4049-AAC1-A8D47FE93A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222CE8EE-419E-4049-AAC1-A8D47FE93A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222CE8EE-419E-4049-AAC1-A8D47FE93A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA3E8A1-59F1-40CF-93EB-0E2684941BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA3E8A1-59F1-40CF-93EB-0E2684941BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA3E8A1-59F1-40CF-93EB-0E2684941BB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA3E8A1-59F1-40CF-93EB-0E2684941BB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BEA3E8A1-59F1-40CF-93EB-0E2684941BB2} = {B366AA40-F9AE-4DAF-9394-D7DCD8F6F115}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0997B54F-481F-40EA-BA39-9583E71CC5C2}
