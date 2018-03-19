@@ -54,7 +54,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Kangaroo.Core\Kangaroo.Core.csproj">
       <Project>{ab236705-c82f-46d9-905e-2f552d140a1b}</Project>
