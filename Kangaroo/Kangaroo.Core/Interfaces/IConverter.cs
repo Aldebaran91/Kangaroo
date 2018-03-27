@@ -11,7 +11,7 @@ namespace Kangaroo.Core.Interfaces
 	/// <typeparam name="T"></typeparam>
 	/// <typeparam name="U"></typeparam>
 	public interface IConverter<T, U>
-    {
+	{
 		/// <summary>
 		/// Generic method to convert data from a data type (T) to another (U). Conversion is perfomed in preparation for exporting data.
 		/// </summary>
@@ -24,5 +24,5 @@ namespace Kangaroo.Core.Interfaces
 		/// <param name="data"></param>
 		/// <returns></returns>
 		Task<U> ConvertAsync(T data);
-    }
+	}
 }
