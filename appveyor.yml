@@ -10,3 +10,6 @@ install:
   - ps: Start-FileDownload $env:SandCastleUri -FileName $env:SandCastleZipFile
   - cmd: 7z x SHFBInstaller.zip -y
   - ps: msiexec /i InstallResources\SandcastleHelpFileBuilder.msi /quiet /qn /norestart /log install.log
+
+  before_build:
+  - nuget restore
