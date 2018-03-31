@@ -5,10 +5,13 @@ using System.Threading.Tasks;
 
 namespace Kangaroo
 {
-	/// <summary>
-	/// Primary class of the Kangaroo library.
-	/// </summary>
-	public sealed class Kangaroo
+    /// <summary>
+    /// Primary class of the Kangaroo library.
+    /// </summary>
+    /// <example>
+    /// <code source="..\..\SWF\Kangaroo.Docu\KangarooExample.cs" region="KangarooExample1" title="How to use Kangaroo library"/>
+    /// </example>
+    public sealed class Kangaroo
 	{
 		/// <summary>
 		/// Enumerable property with a collection of data objects to be exported.

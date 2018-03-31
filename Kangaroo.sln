@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchAndReportException", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Core.Test", "Kangaroo\Kangaroo.Core.Test\Kangaroo.Core.Test.csproj", "{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Docu", "Kangaroo.Docu\Kangaroo.Docu.csproj", "{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
