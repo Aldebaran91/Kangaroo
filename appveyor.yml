@@ -3,7 +3,7 @@ image: Visual Studio 2017
 environment:
   SHFBROOT:  C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\
   SandCastleZipFile: SHFBInstaller.zip
-  SandCastleUri: https://github.com/EWSoftware/SHFB/releases/download/v2017.1.28.0/SHFBInstaller_v20171.28.0.zip
+  SandCastleUri: https://github.com/EWSoftware/SHFB/releases/download/v2017.12.30.2/SHFBInstaller_v2017.12.30.2.zip
   
 install:
   - choco install gitversion.portable -pre -y
