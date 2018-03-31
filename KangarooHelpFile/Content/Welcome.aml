@@ -1,52 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <topic id="96ee7fa0-3055-46eb-a948-3d7cf7c0b881" revisionNumber="1">
-	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" 
+                               xmlns:xlink="http://www.w3.org/1999/xlink">
 		<introduction>
-			<para>This is a sample conceptual topic.  You can use this as a starting point for adding more conceptual
-content to your help project.</para>
+			<para>This is a short summary about the library Kangaroo</para>
 		</introduction>
 
 		<section>
-			<title>Getting Started</title>
+			<title>Latest version</title>
 			<content>
-				<para>To get started, add a documentation source to the project (a Visual Studio solution, project, or
-assembly and XML comments file).  See the <legacyBold>Getting Started</legacyBold> topics in the Sandcastle Help
-File Builder's help file for more information.  The following default items are included in this project:</para>
-
-				<list class="bullet">
-					<listItem>
-						<para><localUri>ContentLayout.content</localUri> - Use the content layout file to manage the
-conceptual content in the project and define its layout in the table of contents.</para>
-					</listItem>
-
-					<listItem>
-						<para>The <localUri>.\media</localUri> folder - Place images in this folder that you will reference
-from conceptual content using <codeInline>medialLink</codeInline> or <codeInline>mediaLinkInline</codeInline>
-elements.  If you will not have any images in the file, you may remove this folder.</para>
-					</listItem>
-
-					<listItem>
-						<para>The <localUri>.\icons</localUri> folder - This contains a default logo for the help file.  You
-may replace it or remove it and the folder if not wanted.  If removed or if you change the file name, update
-the <ui>Transform Args</ui> project properties page by removing or changing the filename in the
-<codeInline>logoFile</codeInline> transform argument.  Note that unlike images referenced from conceptual topics,
-the logo file should have its <legacyBold>BuildAction</legacyBold> property set to <codeInline>Content</codeInline>.</para>
-					</listItem>
-
-					<listItem>
-						<para>The <localUri>.\Content</localUri> folder - Use this to store your conceptual topics.  You may
-name the files and organize them however you like.  One suggestion is to lay the files out on disk as you have
-them in the content layout file as shown in this project but the choice is yours.  Files can be added via the
-Solution Explorer or from within the content layout file editor.  Files must appear in the content layout file
-in order to be compiled into the help file.</para>
-					</listItem>
-				</list>
-
-				<para>See the <legacyBold>Conceptual Content</legacyBold> topics in the Sandcastle Help File Builder's
-help file for more information.  See the <legacyBold> Sandcastle MAML Guide</legacyBold> for details on Microsoft
-Assistance Markup Language (MAML) which is used to create these topics.</para>
+        <para>To get the latest version of Kangaroo you can go to the repository of Kangaroo on GitHub at 
+        <externalLink>
+          <linkText>Kangaroo - Repo</linkText>
+          <linkUri>https://github.com/Aldebaran91/SWF/</linkUri>
+        </externalLink>.</para>
 			</content>
 		</section>
+
+    <section>
+      <title>What can you do?</title>
+      <content>
+        <para>
+          The Kangaroo Data Export Management Library standardizes the data transfer of programs to
+          external interfaces. The library makes it possible to make the export dynamic and extensible
+          without requiring major changes to the main system.
+        </para>
+        <para>
+          A main application case is, for example, a large system conglomerate with many small
+          subsystems that have to transmit information via standardized paths (e.g. email, log files).
+          Since such environments have often evolved historically, there are seldom precisely defined
+          standards. If one of these transmission paths is changed, changes to the individual systems
+          are often necessary. This should be prevented / reduced by the Kangaroo Library with little
+          initial effort. Instead, a system is used that uses standardized export paths that can be
+          exchanged externally without having to change the program.
+        </para>
+        <para>
+          To keep the initial effort as low as possible, the library provides both a set of useful
+          standard exporters and a set for categorization. However, both can also be adapted by the user.
+          In addition to the exporters, the loading of settings from outside the program is made
+          possible with little effort in order to minimize necessary maintenance requirements on
+          the basic systems.
+        </para>
+        <para>
+          The Kangaroo Data Export Management Library helps to standardize data transfer and reduce
+          ongoing maintenance.
+        </para>
+
+        <para>Functional requierments</para>
+        <list class="bullet">
+          <listItem>
+            <para>categories tracked objects</para>
+          </listItem>
+          <listItem>
+            <para>collecting or direct handling of data</para>
+          </listItem>
+          <listItem>
+            <para>generic inport/export</para>
+          </listItem>
+        </list>
+        <para>Non-functional requierments</para>
+        <list class="bullet">
+          <listItem>
+            <para>supports .Net Standard 1.0</para>
+          </listItem>
+          <listItem>
+            <para>easy to use and expand</para>
+          </listItem>
+          <listItem>
+            <para>performance</para>
+          </listItem>
+        </list>
+
+      </content>
+    </section>
 
 		<relatedTopics>
 			<link xlink:href="b7fac042-d024-4e99-b50e-832de1a80646" />
