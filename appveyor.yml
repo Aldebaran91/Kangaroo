@@ -13,3 +13,6 @@ install:
 
 before_build:
 - nuget restore
+
+before_deploy:
+- cmd: msbuild KangarooHelpFile\KangarooHelpFile.shfbproj /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=%CONFIGURATION% /p:HelpFileVersion=%GitVersion_NuGetVersion%
