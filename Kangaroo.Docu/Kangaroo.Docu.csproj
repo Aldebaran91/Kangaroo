@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Kangaroo\Kangaroo.Core\Kangaroo.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Implementations\" />
-  </ItemGroup>
-
 </Project>

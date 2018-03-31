@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Kangaroo.Core.Interfaces
 {
@@ -10,7 +9,7 @@ namespace Kangaroo.Core.Interfaces
     public interface IExportSettings
     {
         /// <summary>
-        /// Boolean property to indicate if the export should be continuous, or data should be collected and exported cumulatively based on a trigger. 
+        /// Boolean property to indicate if the export should be continuous, or data should be collected and exported cumulatively based on a trigger.
         /// </summary>
         bool ContinousExport { get; set; }
 

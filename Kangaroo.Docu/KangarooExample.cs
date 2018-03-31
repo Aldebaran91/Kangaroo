@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Kangaroo.Core.Interfaces;
+using Kangaroo.Docu.Implementations;
+using System;
+using System.Collections.Generic;
 
 namespace Kangaroo.Docu
 {
@@ -6,10 +9,19 @@ namespace Kangaroo.Docu
     {
         public void CreateKangaroo()
         {
-            #region KangarooExample1
+            #region Example1
+
+            // First create an instance of Kangaroo
             Kangaroo kangaroo = new Kangaroo();
+
+            IExportManager<String, String> exportManager = new ExportHandlerExample();
+
+            kangaroo.ExportHandler = new List<IExportManager<object, object>>()
+            {
+                
+            };
             
-            #endregion
+            #endregion KangarooExample1
         }
     }
 }
