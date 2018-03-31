@@ -11,5 +11,5 @@ install:
   - cmd: 7z x SHFBInstaller.zip -y
   - ps: msiexec /i InstallResources\SandcastleHelpFileBuilder.msi /quiet /qn /norestart /log install.log
 
-  before_build:
-  - nuget restore
+before_build:
+- nuget restore
