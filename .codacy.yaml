@@ -1,0 +1,3 @@
+exlude_paths:
+ - 'Kangaroo.Docu/**'
+ - 'KangarooHelpFile/**'
