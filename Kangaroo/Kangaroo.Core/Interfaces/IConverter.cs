@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Kangaroo.Core.Interfaces
+namespace Kangaroo.Core
 {
     /// <summary>
     /// Defines the generic methods to be implemented for converting data from a data type (T) to another (U). Provides a basis for custom converter implemenations.
@@ -22,12 +22,5 @@ namespace Kangaroo.Core.Interfaces
         /// <param name="data">Data is the object which should be converted to the generic type U</param>
         /// <returns>Return a new type converted from input data.</returns>
         U Convert(T data);
-
-        /// <summary>
-        /// Generic method to convert data, which takes an input of a data type (T) and returns a Task with a result of another type (U). Conversion is perfomed in preparation for exporting data asynchronously.
-        /// </summary>
-        /// <param name="data">Data is the object which should be converted to the generic type U</param>
-        /// <returns>Return a new type converted from input data.</returns>
-        Task<U> ConvertAsync(T data);
     }
 }

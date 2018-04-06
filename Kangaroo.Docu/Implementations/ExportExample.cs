@@ -1,4 +1,4 @@
-﻿using Kangaroo.Core.Interfaces;
+﻿using Kangaroo;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 namespace Kangaroo.Docu.Implementations
 {
     #region Example1
-    public class ExportExample : IExport<string>
-    {
-        public Predicate<string> Filter
-        {
-            get
-            {
-                return (string input) => { return input.Length > 5; };
-            }
-            set
-            {
-            }
-        }
+    //public class ExportExample : IExport<string>
+    //{
+    //    public Predicate<string> Filter
+    //    {
+    //        get
+    //        {
+    //            return (string input) => { return input.Length > 5; };
+    //        }
+    //        set
+    //        {
+    //        }
+    //    }
 
-        public void ExportData(IEnumerable<string> data)
-        {
-        }
+    //    public void ExportData(IEnumerable<string> data)
+    //    {
+    //    }
 
-        public Task ExportDataAsync(IEnumerable<string> data)
-        {
-            return Task.Run(() =>
-            {
-            });
-        }
-    }
+    //    public Task ExportDataAsync(IEnumerable<string> data)
+    //    {
+    //        return Task.Run(() =>
+    //        {
+    //        });
+    //    }
+    //}
     #endregion
 }
