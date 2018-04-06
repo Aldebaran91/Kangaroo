@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Kangaroo.Core
 {
-    public abstract class Exporter<T, U> : IKangarooExportManager<T, U>, IKangarooExportWorker<T>
+    public abstract class KangarooExporter<T, U> : IKangarooExportManager<T, U>, IKangarooExportWorker<T>
     {
         /// <summary>
         /// Property to set criteria for filtering data to be exported.
