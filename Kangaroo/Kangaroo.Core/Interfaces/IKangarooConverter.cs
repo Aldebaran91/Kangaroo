@@ -7,7 +7,7 @@
     /// <typeparam name="U">U is the generic type for the export.</typeparam>
     /// <example>
     /// <code
-    /// source="..\Kangaroo.Docu\Implementations\ConverterExample.cs"
+    /// source="..\Kangaroo.Docu\Implementations\KangarooConverterExamples.cs"
     /// region="Example1"
     /// title="How create a converter for the export manager"
     /// language="csharp"/>
