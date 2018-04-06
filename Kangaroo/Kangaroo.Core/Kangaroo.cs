@@ -20,9 +20,7 @@ namespace Kangaroo
 
         private static KangarooStore<T> instance;
         private KangarooSettings settings;
-
-        public static KangarooStore<T> GetInstance => instance ?? (instance = new KangarooStore<T>());
-
+        
         #endregion
 
         #region Constructor
@@ -48,7 +46,7 @@ namespace Kangaroo
         /// <summary>
         /// Enumerable property with a collection of specific/custom export handlers to be used.
         /// </summary>
-        public IList<IExportWorker<T>> ExportHandler { get; set; }
+        public IList<IKangarooExportWorker<T>> ExportHandler { get; set; }
         
         /// <summary>
         /// Property for export settings as defined by specific/custom implementation.
@@ -67,32 +65,11 @@ namespace Kangaroo
         }
 
         /// <summary>
-        /// Method for adding data asynchronously to the collection of data objects to be exported.
-        /// </summary>
-        /// <param name="data">The data which should be exported later.</param>
-		/// <returns>Returns a task.</returns>
-        public Task AddDataAsync(T data)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Overloaded method for addig data to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
         /// </summary>
         /// <param name="data">The data which should be exported later.</param>
         /// <param name="category">Provides the ability to categories the data.</param>
         public void AddData(T data, string category)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Overloaded method for addig data asynchronously to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
-        /// </summary>
-        /// <param name="data">The data which should be exported later.</param>
-        /// <param name="category">Provides the ability to categories the data.</param>
-		/// <returns>Returns a task.</returns>
-        public Task AddDataAsync(T data, string category)
         {
             throw new NotImplementedException();
         }

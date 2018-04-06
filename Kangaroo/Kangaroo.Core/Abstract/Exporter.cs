@@ -5,17 +5,17 @@ using System.Linq;
 
 namespace Kangaroo.Core
 {
-    public abstract class Exporter<T, U> : IExportManager<T, U>, IExportWorker<T>
+    public abstract class Exporter<T, U> : IKangarooExportManager<T, U>, IKangarooExportWorker<T>
     {
         /// <summary>
         /// Property to set criteria for filtering data to be exported.
         /// </summary>
         public Predicate<T> Filter { get; set; } = null;
 
-        public IConverter<T, U> Converter { get; set; }
+        public IKangarooConverter<T, U> Converter { get; set; }
 
-        public IExportWorker<U> Worker { get; set; }
-
+        public IKangarooExportWorker<U> Worker { get; set; }
+                
         public void Export(IEnumerable<T> input)
         {
             try
@@ -24,7 +24,10 @@ namespace Kangaroo.Core
                     ? input.Where(x => Filter(x))
                     : input;
 
-                Worker.Export(list.Select(x => Converter.Convert(x)));
+                if (Converter == null)
+                    Worker.Export(list.Select(x => (U)Convert.ChangeType(x, typeof(U))));
+                else
+                    Worker.Export(list.Select(x => Converter.Convert(x)));
             }
             catch (NullReferenceException exp)
             {

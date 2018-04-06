@@ -14,7 +14,7 @@ namespace Kangaroo.Core
     /// title="How create a converter for the export manager"
     /// language="csharp"/>
     /// </example>
-    public interface IConverter<T, U>
+    public interface IKangarooConverter<T, U>
     {
         /// <summary>
         /// Generic method to convert data from a data type (T) to another (U). Conversion is perfomed in preparation for exporting data.

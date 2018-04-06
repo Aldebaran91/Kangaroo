@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Kangaroo.Core
 {
-    public interface IExportWorker<T>
+    public interface IKangarooExportWorker<T>
     {
         void Export(IEnumerable<T> input);
     }
