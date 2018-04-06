@@ -14,7 +14,7 @@ namespace Kangaroo.Core
         private IReadOnlyList<string> categories;
 
         /// <summary>
-        /// BETA BETA BETA BETA 
+        /// BETA BETA BETA BETA
         /// </summary>
         /// <param name="continousExport"></param>
         /// <param name="maxStoredObjects"></param>
@@ -28,7 +28,7 @@ namespace Kangaroo.Core
         }
 
         /// <summary>
-        /// BETA BETA BETA BETA 
+        /// BETA BETA BETA BETA
         /// </summary>
         /// <param name="interval"></param>
         /// <param name="continousExport"></param>

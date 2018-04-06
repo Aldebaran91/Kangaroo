@@ -9,8 +9,8 @@ namespace Kangaroo
     /// Primary class of the Kangaroo library.
     /// </summary>
     /// <example>
-    /// <code 
-    /// source="..\Kangaroo.Docu\KangarooExample.cs" 
+    /// <code
+    /// source="..\Kangaroo.Docu\KangarooExample.cs"
     /// region="Example1"
     /// title="How to use Kangaroo library"/>
     /// </example>
@@ -20,8 +20,8 @@ namespace Kangaroo
 
         private static KangarooStore<T> instance;
         private KangarooSettings settings;
-        
-        #endregion
+
+        #endregion Fields
 
         #region Constructor
 
@@ -34,7 +34,7 @@ namespace Kangaroo
             this.settings = settings;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Properties
 
@@ -47,13 +47,13 @@ namespace Kangaroo
         /// Enumerable property with a collection of specific/custom export handlers to be used.
         /// </summary>
         public IList<IKangarooExportWorker<T>> ExportHandler { get; set; }
-        
+
         /// <summary>
         /// Property for export settings as defined by specific/custom implementation.
         /// </summary>
         public KangarooSettings Settings { get => settings; set => settings = value; }
-        
-        #endregion
+
+        #endregion Properties
 
         /// <summary>
         /// Method for adding data to the collection of data objects to be exported.

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Kangaroo.Core
+﻿namespace Kangaroo.Core
 {
     public interface IKangarooExportManager<T, U>
     {

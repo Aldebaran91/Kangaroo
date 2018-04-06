@@ -15,7 +15,7 @@ namespace Kangaroo.Core
         public IKangarooConverter<T, U> Converter { get; set; }
 
         public IKangarooExportWorker<U> Worker { get; set; }
-                
+
         public void Export(IEnumerable<T> input)
         {
             try

@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Kangaroo.Core
+﻿namespace Kangaroo.Core
 {
     /// <summary>
     /// Defines the generic methods to be implemented for converting data from a data type (T) to another (U). Provides a basis for custom converter implemenations.
@@ -8,7 +6,7 @@ namespace Kangaroo.Core
     /// <typeparam name="T">T is the generic type for the input.</typeparam>
     /// <typeparam name="U">U is the generic type for the export.</typeparam>
     /// <example>
-    /// <code 
+    /// <code
     /// source="..\Kangaroo.Docu\Implementations\ConverterExample.cs"
     /// region="Example1"
     /// title="How create a converter for the export manager"

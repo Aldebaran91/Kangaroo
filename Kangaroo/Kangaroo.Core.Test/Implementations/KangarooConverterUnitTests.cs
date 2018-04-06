@@ -3,7 +3,7 @@
 namespace Kangaroo.Core.Test.Implementations
 {
     [TestClass]
-    public class UnitTest1
+    public class KangarooConverterUnitTests
     {
         [TestMethod]
         public void TestMethod1()

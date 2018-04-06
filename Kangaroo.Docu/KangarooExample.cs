@@ -1,7 +1,6 @@
-﻿using Kangaroo;
+﻿using Kangaroo.Core;
 using Kangaroo.Docu.Implementations;
 using System;
-using System.Collections.Generic;
 
 namespace Kangaroo.Docu
 {
@@ -11,18 +10,25 @@ namespace Kangaroo.Docu
         {
             #region Example1
 
+            // PLEASE CHANGE!!!
             // First create an instance of Kangaroo
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
 
-            //Kangaroo kangaroo = new Kangaroo();
+            // PLEASE CHANGE!!!
+            // Create KangarooExporter
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+            exporter.Converter = new KangarooConvertExcpetionToString();
+            exporter.Filter = (x) =>
+            {
+                return x is NullReferenceException;
+            };
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
 
-            //IExportManager<String, String> exportManager = new ExportHandlerExample();
+            // PLEASE CHANGE!!!
+            // Add new exporter to exporter list
+            kangaroo.ExportHandler.Add(exporter);
 
-            //kangaroo.ExportHandler = new List<IExportManager<object, object>>()
-            //{
-                
-            //};
-            
-            #endregion
+            #endregion Example1
         }
     }
 }

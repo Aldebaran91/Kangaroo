@@ -12,7 +12,7 @@ namespace Kangaroo.Core.Exceptions
         {
         }
 
-        internal NoExportFoundException(string message, Exception innerException) : base (message, innerException)
+        internal NoExportFoundException(string message, Exception innerException) : base(message, innerException)
         {
         }
     }
