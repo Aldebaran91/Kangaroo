@@ -48,7 +48,7 @@ namespace Kangaroo
         /// <summary>
         /// Enumerable property with a collection of specific/custom export handlers to be used.
         /// </summary>
-        public IList<ExportManager<T>> ExportHandler { get; set; }
+        public IList<IExportWorker<T>> ExportHandler { get; set; }
         
         /// <summary>
         /// Property for export settings as defined by specific/custom implementation.

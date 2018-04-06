@@ -2,26 +2,26 @@
 <HelpTOC>
 
   <HelpTOCNode Title="Welcome to the Kangaroo Library" Url="html/96ee7fa0-3055-46eb-a948-3d7cf7c0b881.htm" />
-  <HelpTOCNode Id="c7be6870-71cd-4ead-800b-8d7b47a2b994" Title="Version History" Url="html/b7fac042-d024-4e99-b50e-832de1a80646.htm">
+  <HelpTOCNode Id="a7847153-ad9b-4c6c-8a98-78947ee3b332" Title="Version History" Url="html/b7fac042-d024-4e99-b50e-832de1a80646.htm">
     <HelpTOCNode Title="Version 1.0.0.0" Url="html/3c0b2795-16aa-4aef-a948-6cc7c28dad67.htm" />
   </HelpTOCNode>
-  <HelpTOCNode Id="242e5521-2bb2-4622-9bbc-48bfddf419ea" Title="Kangaroo" Url="html/14638ab4-f1ed-c0a6-92b9-bc8ac5665245.htm">
-    <HelpTOCNode Id="509a29a1-1fc8-4cb6-a2c5-0adcd51a4d7b" Title="KangarooStore(T) Class" Url="html/e1bb28ac-b49d-4ea3-36b5-8ec240f9e5b4.htm">
-      <HelpTOCNode Id="a6dbce60-0894-4cc8-b428-fec32e57f0e9" Title="KangarooStore(T) Constructor " Url="html/bbd6c2a6-605c-d387-0f1e-b95c08b7de92.htm">
+  <HelpTOCNode Id="6ea27ffe-cd1e-4178-af11-a3789b0c7a77" Title="Kangaroo" Url="html/14638ab4-f1ed-c0a6-92b9-bc8ac5665245.htm">
+    <HelpTOCNode Id="a0ee56bd-c680-4233-819f-1874c163d057" Title="KangarooStore(T) Class" Url="html/e1bb28ac-b49d-4ea3-36b5-8ec240f9e5b4.htm">
+      <HelpTOCNode Id="5baaf572-475d-46ec-ab05-1bc6355364e2" Title="KangarooStore(T) Constructor " Url="html/bbd6c2a6-605c-d387-0f1e-b95c08b7de92.htm">
         <HelpTOCNode Title="KangarooStore(T) Constructor " Url="html/e1f3f15f-a305-2509-1186-d8ca0fc90b45.htm" />
         <HelpTOCNode Title="KangarooStore(T) Constructor (KangarooSettings)" Url="html/9f447c7b-a30b-fac9-3800-7aa8b2ef732d.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="6f1c3796-0e40-40c5-a420-e11c1fbe141d" Title="KangarooStore(T) Properties" Url="html/272f1a8a-d9f2-0319-749a-22329f216378.htm">
+      <HelpTOCNode Id="dfc626fa-9044-4645-afb0-980804fb4fde" Title="KangarooStore(T) Properties" Url="html/272f1a8a-d9f2-0319-749a-22329f216378.htm">
         <HelpTOCNode Title="ExportHandler Property " Url="html/14c994d8-1631-43e8-3210-b1ae72cd82b7.htm" />
         <HelpTOCNode Title="GetInstance Property " Url="html/2d7b72d3-6ad3-9837-5817-74becc4e22f8.htm" />
         <HelpTOCNode Title="Settings Property " Url="html/dba3dfbb-23b1-6132-2de6-33e987981a0e.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="98cf1f27-0b65-4454-bc98-7e8718a57194" Title="KangarooStore(T) Methods" Url="html/583e70eb-9d75-e0f2-a674-4f021d776894.htm">
-        <HelpTOCNode Id="25cf0037-5e8b-4b93-b1c4-fbebd7aefd65" Title="AddData Method " Url="html/d5081e76-0373-b383-c95f-65694a331f26.htm">
+      <HelpTOCNode Id="e89e546f-b915-49cf-9463-7f907a13f0a7" Title="KangarooStore(T) Methods" Url="html/583e70eb-9d75-e0f2-a674-4f021d776894.htm">
+        <HelpTOCNode Id="84be0d97-d884-4d88-839c-462881400517" Title="AddData Method " Url="html/d5081e76-0373-b383-c95f-65694a331f26.htm">
           <HelpTOCNode Title="AddData Method (T)" Url="html/970ef313-48e6-6227-c3ad-c2af58206ecb.htm" />
           <HelpTOCNode Title="AddData Method (T, String)" Url="html/9d1c59f2-3d74-f9fc-0acb-6ca0ee3632ce.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="140eaabb-5015-478b-9926-8eb329c7c72a" Title="AddDataAsync Method " Url="html/82a91001-f736-8324-0900-778fb25e503e.htm">
+        <HelpTOCNode Id="3819df27-627b-4755-bd27-629e5a9b8787" Title="AddDataAsync Method " Url="html/82a91001-f736-8324-0900-778fb25e503e.htm">
           <HelpTOCNode Title="AddDataAsync Method (T)" Url="html/8470750a-4784-bc59-11b5-137d1c8af014.htm" />
           <HelpTOCNode Title="AddDataAsync Method (T, String)" Url="html/0def7033-0142-393e-5a2a-d7439dc04eeb.htm" />
         </HelpTOCNode>
@@ -30,32 +30,39 @@
       </HelpTOCNode>
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="d552ef25-6710-4538-9d1f-4ffa4c852cba" Title="Kangaroo.Core" Url="html/1d64d066-e962-a869-a93b-0d27a122cbc7.htm">
-    <HelpTOCNode Id="8d07fa1a-bc97-478e-b523-df8775121ca2" Title="Export(T) Class" Url="html/eb194365-f4ef-6e41-e061-c10fde9ec08c.htm">
-      <HelpTOCNode Id="28a04c3e-f17c-4512-8b6e-fcfb8e8baffd" Title="Export(T) Methods" Url="html/c33377b6-5680-7398-54e4-e298e26582c1.htm">
-        <HelpTOCNode Title="ExportData Method " Url="html/e8b0ee7b-136f-4de0-5940-c919084ae81d.htm" />
+  <HelpTOCNode Id="4de58f63-6756-4204-b8f0-b8b76d56cc71" Title="Kangaroo.Core" Url="html/1d64d066-e962-a869-a93b-0d27a122cbc7.htm">
+    <HelpTOCNode Id="332d8569-d9c3-4c86-bc30-bc7e009c61ce" Title="Exporter(T, U) Class" Url="html/895e9280-1789-2c11-a8a3-7714e114c4d4.htm">
+      <HelpTOCNode Id="89381931-512d-40c6-8df9-a9d9e1c99248" Title="Exporter(T, U) Properties" Url="html/1a7a8549-0d0e-7c69-0d61-a180ce2fd078.htm">
+        <HelpTOCNode Title="Converter Property " Url="html/404b0a21-9004-df77-341f-7ef9d6f3c8dc.htm" />
+        <HelpTOCNode Title="Filter Property " Url="html/fb9c84b9-c065-728a-b192-de96e6b41605.htm" />
+        <HelpTOCNode Title="Worker Property " Url="html/c24837bd-0f9a-6d88-fd11-2e75096fa7d6.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="709f6f7d-65f8-4535-b61d-af25d6e4c0d0" Title="Exporter(T, U) Methods" Url="html/1e5a50b8-7257-c8d8-edc9-0cd186fb4fdb.htm">
+        <HelpTOCNode Title="Export Method " Url="html/d2beacd0-6576-f759-65ff-975541de195d.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="6bcb902b-bf3e-46ec-9d42-258dfb2481cc" Title="ExportManager(T) Class" Url="html/4d28fee9-b24a-09d8-940a-4a9df92f0bfb.htm">
-      <HelpTOCNode Id="c84b80dd-af7c-411b-9d26-3783c58811ae" Title="ExportManager(T) Properties" Url="html/6fdc7357-8baa-257b-5335-678cb9b04ff7.htm">
-        <HelpTOCNode Title="Exporter Property " Url="html/44b4ab69-cb37-b3ea-b220-526897c22351.htm" />
-        <HelpTOCNode Title="Filter Property " Url="html/65797ed2-8c0a-aa16-a4b0-8f219f9aa72e.htm" />
-      </HelpTOCNode>
-      <HelpTOCNode Id="795a787f-a55e-47ae-b323-2aa575a82c58" Title="ExportManager(T) Methods" Url="html/d9d85a2f-497c-25f0-66a7-15f4fc7cb2ab.htm">
-        <HelpTOCNode Title="ExportData Method " Url="html/7672d28b-2d38-946c-6f8b-7241ed33998e.htm" />
-      </HelpTOCNode>
-    </HelpTOCNode>
-    <HelpTOCNode Id="c7c5267d-58c0-4963-ad25-a10a97a000e8" Title="IConverter(T, U) Interface" Url="html/723b8646-5d91-5a49-4642-faca6a09fc1f.htm">
-      <HelpTOCNode Id="8908dba8-ec38-4818-8013-2b88d3d44239" Title="IConverter(T, U) Methods" Url="html/b409cf9b-f611-4e3c-b1e8-0760634c59a9.htm">
+    <HelpTOCNode Id="1c0e11cd-9df6-4748-bd7b-b6917d7280c0" Title="IConverter(T, U) Interface" Url="html/723b8646-5d91-5a49-4642-faca6a09fc1f.htm">
+      <HelpTOCNode Id="88cb8d2f-a72e-462e-aaee-4aa059661741" Title="IConverter(T, U) Methods" Url="html/b409cf9b-f611-4e3c-b1e8-0760634c59a9.htm">
         <HelpTOCNode Title="Convert Method " Url="html/f37fc0b1-1ab3-452f-7504-980db0ebc289.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="2fbb535f-d8c7-417a-89c6-50ca00691539" Title="KangarooSettings Class" Url="html/fd4891b0-15e4-dfdd-0567-0d3d7c661c8a.htm">
-      <HelpTOCNode Id="126ae59f-c442-40cc-b35d-45ab19563f37" Title="KangarooSettings Constructor " Url="html/a8d17af4-4ca6-c963-4c18-f13bae95887a.htm">
+    <HelpTOCNode Id="2a85a930-6eac-4729-89e7-70436f6a52f2" Title="IExportManager(T, U) Interface" Url="html/35dcdf88-fbe3-d260-687f-41541701c9af.htm">
+      <HelpTOCNode Id="218eaf8b-70e7-4da6-820e-9fd5ec510bab" Title="IExportManager(T, U) Properties" Url="html/9a2162ad-4acb-fb6c-6ea0-a8827a371f48.htm">
+        <HelpTOCNode Title="Converter Property " Url="html/bfd96557-80b4-2d88-758a-a17cae382a70.htm" />
+        <HelpTOCNode Title="Worker Property " Url="html/21203d1e-2608-b622-bd9a-8d76372b7ff3.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="4492d49b-37c4-4084-ac49-876ed4a3909c" Title="IExportWorker(T) Interface" Url="html/09171d10-eaf1-e24c-3325-5801f042b4b9.htm">
+      <HelpTOCNode Id="1b413dab-6179-47ce-90e6-54a3edd8c5eb" Title="IExportWorker(T) Methods" Url="html/5d9ba283-efd9-4777-fe1d-7b5bdc015314.htm">
+        <HelpTOCNode Title="Export Method " Url="html/4455cc5b-ad8d-0d1c-4467-52d14a20c87e.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="79ab35bf-0dfd-4615-a5b3-2cf4bc8a3965" Title="KangarooSettings Class" Url="html/fd4891b0-15e4-dfdd-0567-0d3d7c661c8a.htm">
+      <HelpTOCNode Id="2ccacc99-7d46-4775-81bc-51dba5db4b42" Title="KangarooSettings Constructor " Url="html/a8d17af4-4ca6-c963-4c18-f13bae95887a.htm">
         <HelpTOCNode Title="KangarooSettings Constructor (Boolean, Int64, IReadOnlyList(String))" Url="html/dcf220b8-abc7-d0b7-29d5-5ec9133a97c6.htm" />
         <HelpTOCNode Title="KangarooSettings Constructor (TimeSpan, Boolean, Int64, IReadOnlyList(String))" Url="html/a8392ef6-4362-552e-b928-dbfcfb4ef67d.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="54006bc7-778f-4f20-a5ae-9349485468ee" Title="KangarooSettings Properties" Url="html/7c7286ff-3cff-2c74-18b4-ef4a0495270f.htm">
+      <HelpTOCNode Id="4250b399-ebef-4adb-80c0-3b31a5e57cb1" Title="KangarooSettings Properties" Url="html/7c7286ff-3cff-2c74-18b4-ef4a0495270f.htm">
         <HelpTOCNode Title="Categories Property " Url="html/b0fd4edd-6c03-aa42-9e86-5f76085109c8.htm" />
         <HelpTOCNode Title="ContinousExport Property " Url="html/c8d8220d-42e4-0d80-3259-fb3d42091fc0.htm" />
         <HelpTOCNode Title="Inverval Property " Url="html/f54496be-58ff-1646-f02d-6e15b7e49d41.htm" />
@@ -64,8 +71,8 @@
       <HelpTOCNode Title="KangarooSettings Methods" Url="html/b0dfa386-5940-03b3-1d83-c12547817d9e.htm" />
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="45b49832-c057-445d-8226-65fa84173539" Title="Kangaroo.Core.Exceptions" Url="html/820fb1c1-ed7e-4514-f428-6a4e9374b927.htm">
-    <HelpTOCNode Id="423dcf8d-e15c-483e-a1c2-262d844eea24" Title="NoExportFoundException Class" Url="html/af310089-923b-b2f7-08ee-c3e8bd62d2db.htm">
+  <HelpTOCNode Id="57929306-5eb6-453f-84a5-9ac59bbae7b2" Title="Kangaroo.Core.Exceptions" Url="html/820fb1c1-ed7e-4514-f428-6a4e9374b927.htm">
+    <HelpTOCNode Id="dc5913c6-549e-4cd1-b900-b952648eac9a" Title="NoExportFoundException Class" Url="html/af310089-923b-b2f7-08ee-c3e8bd62d2db.htm">
       <HelpTOCNode Title="NoExportFoundException Properties" Url="html/b612fddf-bcd5-cef3-95ac-385c45fe7753.htm" />
       <HelpTOCNode Title="NoExportFoundException Methods" Url="html/b130e5d0-3e7e-7eb8-8a31-13e1e8a3b84d.htm" />
     </HelpTOCNode>
