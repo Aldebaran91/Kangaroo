@@ -30,7 +30,7 @@
     </DocumentationSources>
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
-    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
+    <HelpFileFormat>Website</HelpFileFormat>
     <IndentHtml>False</IndentHtml>
     <KeepLogFile>True</KeepLogFile>
     <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
@@ -48,9 +48,8 @@
     <ContentPlacement>AboveNamespaces</ContentPlacement>
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, EditorBrowsableNever, NonBrowsable</VisibleItems>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="Kangaroo" isDocumented="True" xmlns="">Contains the primary class of the Kangaroo library.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="Kangaroo.Core.Interfaces" isDocumented="True" xmlns="">Contains interfaces to be implemented for converting and exporting data, as required by the specific use case of the library.</NamespaceSummaryItem>
-    </NamespaceSummaries>
+      <NamespaceSummaryItem name="Kangaroo" isDocumented="True">Contains the primary class of the Kangaroo library.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Kangaroo.Core.Interfaces" isDocumented="True">Contains interfaces to be implemented for converting and exporting data, as required by the specific use case of the library.</NamespaceSummaryItem></NamespaceSummaries>
     <CatalogProductId>VS</CatalogProductId>
     <CatalogVersion>100</CatalogVersion>
     <TocOrder>-1</TocOrder>

@@ -1,4 +1,4 @@
-﻿using Kangaroo.Core.Interfaces;
+﻿using Kangaroo.Core;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,38 +14,52 @@ namespace Kangaroo
     /// region="Example1"
     /// title="How to use Kangaroo library"/>
     /// </example>
-    public sealed class Kangaroo
+    public sealed class KangarooStore<T>
     {
+        #region Fields
+
+        private static KangarooStore<T> instance;
+        private KangarooSettings settings;
+        
+        #endregion
+
+        #region Constructor
+
+        public KangarooStore()
+        {
+        }
+
+        public KangarooStore(KangarooSettings settings)
+        {
+            this.settings = settings;
+        }
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         /// Enumerable property with a collection of data objects to be exported.
         /// </summary>
-        public IEnumerable<object> LoggingData { get; set; }
+        private IList<T> data { get; } = new List<T>();
 
         /// <summary>
         /// Enumerable property with a collection of specific/custom export handlers to be used.
         /// </summary>
-        public IEnumerable<IExportManager<object, object>> ExportHandler { get; set; }
-
+        public IList<IKangarooExportWorker<T>> ExportHandler { get; set; }
+        
         /// <summary>
         /// Property for export settings as defined by specific/custom implementation.
         /// </summary>
-        public IExportSettings ExportSettings { get; set; }
+        public KangarooSettings Settings { get => settings; set => settings = value; }
+        
+        #endregion
 
         /// <summary>
         /// Method for adding data to the collection of data objects to be exported.
         /// </summary>
         /// <param name="data">The data which should be exported later.</param>
-        public void AddData(object data)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Method for adding data asynchronously to the collection of data objects to be exported.
-        /// </summary>
-        /// <param name="data">The data which should be exported later.</param>
-		/// <returns>Returns a task.</returns>
-        public Task AddDataAsync(object data)
+        public void AddData(T data)
         {
             throw new NotImplementedException();
         }
@@ -55,18 +69,7 @@ namespace Kangaroo
         /// </summary>
         /// <param name="data">The data which should be exported later.</param>
         /// <param name="category">Provides the ability to categories the data.</param>
-        public void AddData(object data, string category)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Overloaded method for addig data asynchronously to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
-        /// </summary>
-        /// <param name="data">The data which should be exported later.</param>
-        /// <param name="category">Provides the ability to categories the data.</param>
-		/// <returns>Returns a task.</returns>
-        public Task AddDataAsync(object data, string category)
+        public void AddData(T data, string category)
         {
             throw new NotImplementedException();
         }
