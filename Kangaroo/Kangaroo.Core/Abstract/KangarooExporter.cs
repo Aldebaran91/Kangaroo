@@ -14,7 +14,7 @@ namespace Kangaroo.Core
 	/// <code
 	/// source="..\Kangaroo.Docu\Implementations\KangarooExporterExamples.cs"
 	/// region="Example1"
-	/// title="How to create a custom converter implementation"
+	/// title="How to create a custom exporter implementation"
 	/// language="csharp"/>
 	/// </example>
 	public abstract class KangarooExporter<T, U> : IKangarooExportManager<T, U>, IKangarooExportWorker<T>
