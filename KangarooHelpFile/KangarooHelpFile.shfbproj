@@ -49,7 +49,9 @@
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, EditorBrowsableNever, NonBrowsable</VisibleItems>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="Kangaroo" isDocumented="True">Contains the primary class of the Kangaroo library.</NamespaceSummaryItem>
-<NamespaceSummaryItem name="Kangaroo.Core.Interfaces" isDocumented="True">Contains interfaces to be implemented for converting and exporting data, as required by the specific use case of the library.</NamespaceSummaryItem></NamespaceSummaries>
+<NamespaceSummaryItem name="Kangaroo.Core.Interfaces" isDocumented="True">Contains interfaces to be implemented for converting and exporting data, as required by the specific use case of the library.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Kangaroo.Core.Exceptions" isDocumented="True">Contains library specific exception implementations related to converting and exporting data.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="Kangaroo.Core" isDocumented="True">Contains abstract exporter class to be implemented as required by the specific use case of the library.</NamespaceSummaryItem></NamespaceSummaries>
     <CatalogProductId>VS</CatalogProductId>
     <CatalogVersion>100</CatalogVersion>
     <TocOrder>-1</TocOrder>

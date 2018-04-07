@@ -8,6 +8,7 @@ namespace Kangaroo
     /// <summary>
     /// Primary class of the Kangaroo library.
     /// </summary>
+	/// <typeparam name="T">The generic type parameter.</typeparam>
     /// <example>
     /// <code
     /// source="..\Kangaroo.Docu\KangarooExample.cs"
@@ -17,18 +18,32 @@ namespace Kangaroo
     public sealed class KangarooStore<T>
     {
         #region Fields
-
+		
+		/// <summary>
+		/// Member to define instance belonging to the intantiated object.
+		/// </summary>
         private static KangarooStore<T> instance;
+		
+		/// <summary>
+		/// Member for export settings.
+		/// </summary>
         private KangarooSettings settings;
 
         #endregion Fields
 
         #region Constructor
-
+		
+		/// <summary>
+		/// Default constructor.
+		/// </summary>
         public KangarooStore()
         {
         }
-
+		
+		/// <summary>
+		/// Constructor taking custom exporter settings.
+		/// </summary>
+		/// <param name="settings">Parateter for custom exporter settings.</param>
         public KangarooStore(KangarooSettings settings)
         {
             this.settings = settings;
