@@ -1,7 +1,3 @@
-branches:
-  only:
-  - master
-
 image: Visual Studio 2017
 
 environment:
@@ -17,10 +13,6 @@ install:
 
 before_build:
 - nuget restore
-
-build:
-  parallel: true
-  verbosity: minimal
 
 before_deploy:
 - cmd: msbuild KangarooHelpFile\KangarooHelpFile.shfbproj /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=%CONFIGURATION% /p:HelpFileVersion=%GitVersion_NuGetVersion%
