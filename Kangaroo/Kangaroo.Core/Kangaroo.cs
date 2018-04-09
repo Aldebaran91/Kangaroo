@@ -17,6 +17,19 @@ namespace Kangaroo
 	/// </example>
 	public sealed class KangarooStore<T>
 	{
+
+        private struct KangarooData
+        {
+            public T Data;
+            public KangarooDataCategory Category;
+
+            public KangarooData(T data, KangarooDataCategory category)
+            {
+                this.Data = data;
+                this.Category = category;
+            }
+        }
+
 		#region Fields
 
 		/// <summary>
@@ -56,7 +69,7 @@ namespace Kangaroo
 		/// <summary>
 		/// Enumerable property with a collection of data objects to be exported.
 		/// </summary>
-		private IList<T> data { get; } = new List<T>();
+		private IList<KangarooData> data { get; } = new List<KangarooData>();
 
 		/// <summary>
 		/// Enumerable property with a collection of specific/custom export handlers to be used.
@@ -76,17 +89,17 @@ namespace Kangaroo
 		/// <param name="data">The data which should be exported later.</param>
 		public void AddData(T data)
 		{
-			throw new NotImplementedException();
-		}
+            this.data.Add(new KangarooData(data, null));
+        }
 
 		/// <summary>
 		/// Overloaded method for addig data to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
 		/// </summary>
 		/// <param name="data">The data which should be exported later.</param>
 		/// <param name="category">Provides the ability to categories the data.</param>
-		public void AddData(T data, string category)
+		public void AddData(T data, KangarooDataCategory category)
 		{
-			throw new NotImplementedException();
+			this.data.Add(new KangarooData(data, category));
 		}
 
 		/// <summary>

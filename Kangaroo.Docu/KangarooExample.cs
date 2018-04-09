@@ -31,6 +31,19 @@ namespace Kangaroo.Docu
 			// Add the custom exporter to the export handler (list of exporters to be managed by the library)
 			kangaroo.ExportHandler.Add(exporter);
 
+            // A wild exception occurs
+            try
+            {
+                throw new Exception();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception without specifying a category
+                kangaroo.AddData(ex);
+                // Log the exception with a specific category
+                kangaroo.AddData(ex, KangarooDataCategory.Debug);
+            }
+
 			#endregion Example1
 		}
 	}
