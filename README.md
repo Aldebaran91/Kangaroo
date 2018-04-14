@@ -6,7 +6,7 @@ Kangaroo - Library
 ======================
 
 ## Description
-The Kangaroo library is more than just a queue. It collects all data (exceptions, sensor data, ...) that should be collected. For each type a seperate Kangaroo instance is created. Each instance has one or more export manager implementations (developed by user). These export manager can be extended by a converter (also developed by user). At the end it should standardize the collecting and exporting type. Updates on each export/converter implementations should have no or little impact in already implemented projects.
+The Kangaroo library is more than just a queue. It collects all data (exceptions, sensor data, ...) that should be collected. For each type a seperate Kangaroo instance is created. Each instance has one or more export manager implementations (developed by user). These export manager can be extended by a converter (also developed by user). At the end it should standardize the collecting and exporting type. Updates on each export/converter implementations should have no impact in already implemented projects.
 
 ## Installation
 Add it to your .Net Framework or DotNet project. The library Kangaroo supports .Net Standard 1.0.
