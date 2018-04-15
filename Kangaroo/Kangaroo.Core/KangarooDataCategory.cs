@@ -38,17 +38,17 @@ namespace Kangaroo.Core
         /// <summary>
         /// 
         /// </summary>
-        public string Label { get; private set; }
+        public string Identifier { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="level"></param>
-        /// <param name="label"></param>
-        private KangarooDataCategory(int level, string label)
+        /// <param name="identifier"></param>
+        private KangarooDataCategory(int level, string identifier)
         {
             this.Level = level;
-            this.Label = label;
+            this.Identifier = identifier;
         }
     }
 }

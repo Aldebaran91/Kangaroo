@@ -30,6 +30,17 @@ namespace Kangaroo
             }
         }
 
+        private struct KangarooExportHandler
+        {
+            public IKangarooExportWorker<T> ExportWorker;
+            public KangarooDataCategory Category;
+
+            public KangarooExportHandler(IKangarooExportWorker<T> exportWorker, KangarooDataCategory category)
+            {
+                this.ExportWorker = exportWorker;
+                this.Category = category;
+            }
+        }
 		#region Fields
 
 		/// <summary>
@@ -74,7 +85,7 @@ namespace Kangaroo
 		/// <summary>
 		/// Enumerable property with a collection of specific/custom export handlers to be used.
 		/// </summary>
-		public IList<IKangarooExportWorker<T>> ExportHandler { get; set; }
+		private IList<KangarooExportHandler> ExportHandler { get; set; }
 
 		/// <summary>
 		/// Property for export settings as defined by specific/custom implementation.
@@ -107,7 +118,7 @@ namespace Kangaroo
 		/// </summary>
 		public void StartExport()
 		{
-			throw new NotImplementedException();
+			
 		}
 
 		/// <summary>
