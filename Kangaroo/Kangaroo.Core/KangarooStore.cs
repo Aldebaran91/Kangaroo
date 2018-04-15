@@ -17,6 +17,7 @@ namespace Kangaroo
 	/// </example>
 	public sealed class KangarooStore<T>
 	{
+        private object dataLock = null;
 
         private struct KangarooData
         {
@@ -113,10 +114,18 @@ namespace Kangaroo
 		/// </summary>
 		public void StartExport()
 		{
+            KangarooData[] dataSnapshot = null;
+            lock (dataLock)
+            {
+                dataSnapshot = new KangarooData[data.Count];
+                data.CopyTo(dataSnapshot, 0);
+                this.data.Clear();
+            }
+            
             Dictionary<string, List<T>> dataToExport = new Dictionary<string, List<T>>();
             List<T> dataToExport_uncategorized = new List<T>();
 
-            foreach (KangarooData dataItem in this.data)
+            foreach (KangarooData dataItem in dataSnapshot)
             {
                 if (dataItem.Category == null)
                 {
@@ -130,8 +139,7 @@ namespace Kangaroo
                     dataToExport[dataItem.Category.Identifier].Add(dataItem.Data);
                 }
             }
-            this.data.Clear();
-
+            
             List<Exception> exceptions = new List<Exception>();
             foreach(KangarooExportHandler handler in this.ExportHandler)
             {
@@ -165,8 +173,8 @@ namespace Kangaroo
 		/// <returns>Returns a task.</returns>
 		public Task StartExportAsync()
 		{
-			throw new NotImplementedException();
-		}
+            return Task.Run(() => StartExport());
+        }
 
         /// <summary>
         /// 
