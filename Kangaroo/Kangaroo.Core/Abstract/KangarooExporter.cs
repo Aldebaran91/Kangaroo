@@ -51,13 +51,13 @@ namespace Kangaroo.Core
 				else
 					Worker.Export(list.Select(x => Converter.Convert(x)));
 			}
-			catch (NullReferenceException exp)
+			catch (NullReferenceException)
 			{
 				throw new NoExportFoundException("");
 			}
 			catch (Exception exp)
 			{
-				throw new Exception("");
+				throw exp;
 			}
 		}
 	}
