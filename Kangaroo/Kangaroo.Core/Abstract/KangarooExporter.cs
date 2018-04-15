@@ -18,33 +18,33 @@ namespace Kangaroo.Core
     /// language="csharp"/>
     /// </example>
 	public abstract class KangarooExporter<T, U> : IKangarooExportManager<T, U>, IKangarooExportWorker<T>
-	{
-		/// <summary>
-		/// Property to set criteria for filtering data to be exported.
-		/// </summary>
-		public Predicate<T> Filter { get; set; }
+    {
+        /// <summary>
+        /// Property to set criteria for filtering data to be exported.
+        /// </summary>
+        public Predicate<T> Filter { get; set; }
 
-		/// <summary>
-		/// Property to specify data conversion in prepreration for the export.
-		/// </summary>
-		public IKangarooConverter<T, U> Converter { get; set; }
+        /// <summary>
+        /// Property to specify data conversion in prepreration for the export.
+        /// </summary>
+        public IKangarooConverter<T, U> Converter { get; set; }
 
-		/// <summary>
-		/// Property to specify and access worker object for the export.
-		/// </summary>
-	    public IKangarooExportWorker<U> Worker { get; set; }
-        
+        /// <summary>
+        /// Property to specify and access worker object for the export.
+        /// </summary>
+        public IKangarooExportWorker<U> Worker { get; set; }
+
         /// <summary>
         /// Method for exporting the converted and filtered data utilizing the export worker.
         /// </summary>
         /// <param name="input">Enumerable collection of data as input for the export.</param>
         public void Export(IEnumerable<T> input)
-		{
-			try
-			{
-				IEnumerable<T> list = (Filter != null)
-					? input.Where(x => Filter(x))
-					: input;
+        {
+            try
+            {
+                IEnumerable<T> list = (Filter != null)
+                    ? input.Where(x => Filter(x))
+                    : input;
 
                 if (Converter == null)
                 {
@@ -54,15 +54,15 @@ namespace Kangaroo.Core
                 {
                     Worker.Export(list.Select(x => Converter.Convert(x)));
                 }
-			}
-			catch (NullReferenceException)
-			{
-				throw new NoExportFoundException("No IKangarooExportWorker was added to KangarooExporter");
-			}
-			catch (Exception exp)
-			{
-				throw;
-			}
-		}
-	}
+            }
+            catch (NullReferenceException)
+            {
+                throw new NoExportFoundException("No IKangarooExportWorker was added to KangarooExporter");
+            }
+            catch (Exception exp)
+            {
+                throw;
+            }
+        }
+    }
 }
