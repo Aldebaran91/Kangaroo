@@ -22,30 +22,23 @@ namespace Kangaroo.Core
 		/// <summary>
 		/// Property to set criteria for filtering data to be exported.
 		/// </summary>
-		public Predicate<T> Filter { get; }
+		public Predicate<T> Filter { get; set; }
 
 		/// <summary>
 		/// Property to specify data conversion in prepreration for the export.
 		/// </summary>
-		public IKangarooConverter<T, U> Converter { get; }
+		public IKangarooConverter<T, U> Converter { get; set; }
 
 		/// <summary>
 		/// Property to specify and access worker object for the export.
 		/// </summary>
-	    public IKangarooExportWorker<U> Worker { get; }
-
-        public KangarooExporter(IKangarooExportWorker<U> worker, IKangarooConverter<T, U> converter, Predicate<T> filter = null)
-        {
-            this.Worker = worker;
-            this.Converter = converter;
-            this.Filter = filter;
-        }
-
-		/// <summary>
-		/// Method for exporting the converted and filtered data utilizing the export worker.
-		/// </summary>
-		/// <param name="input">Enumerable collection of data as input for the export.</param>
-		public void Export(IEnumerable<T> input)
+	    public IKangarooExportWorker<U> Worker { get; set; }
+        
+        /// <summary>
+        /// Method for exporting the converted and filtered data utilizing the export worker.
+        /// </summary>
+        /// <param name="input">Enumerable collection of data as input for the export.</param>
+        public void Export(IEnumerable<T> input)
 		{
 			try
 			{

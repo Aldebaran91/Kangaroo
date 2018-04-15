@@ -14,7 +14,8 @@ namespace Kangaroo.Docu
 			KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
 
 			// Create an instance of the custom KangarooExporter implementation, in this case an exporter for exceptions
-			KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+			KangarooExporter<Exception, string> exporter = 
+                new KangarooExceptionExporter();
 
 			// Set the Converter property of the exporter to an instance of a custom converter implementation, in this case converting from Exception to string
 			exporter.Converter = new KangarooConvertExcpetionToString();

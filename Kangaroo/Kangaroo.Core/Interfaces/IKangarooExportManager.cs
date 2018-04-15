@@ -10,11 +10,11 @@
 		/// <summary>
 		/// Property to specify data conversion in prepreration for the export.
 		/// </summary>
-		IKangarooConverter<T, U> Converter { get; }
+		IKangarooConverter<T, U> Converter { get; set; }
 
 		/// <summary>
 		/// Property to specify worker object for the export.
 		/// </summary>
-		IKangarooExportWorker<U> Worker { get; }
+		IKangarooExportWorker<U> Worker { get; set; }
 	}
 }
