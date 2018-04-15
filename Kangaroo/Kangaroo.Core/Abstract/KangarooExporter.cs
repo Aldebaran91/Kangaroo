@@ -22,17 +22,24 @@ namespace Kangaroo.Core
 		/// <summary>
 		/// Property to set criteria for filtering data to be exported.
 		/// </summary>
-		public Predicate<T> Filter { get; set; } = null;
+		public Predicate<T> Filter { get; }
 
 		/// <summary>
 		/// Property to specify data conversion in prepreration for the export.
 		/// </summary>
-		public IKangarooConverter<T, U> Converter { get; set; }
+		public IKangarooConverter<T, U> Converter { get; }
 
 		/// <summary>
 		/// Property to specify and access worker object for the export.
 		/// </summary>
-		public IKangarooExportWorker<U> Worker { get; set; }
+	    public IKangarooExportWorker<U> Worker { get; }
+
+        public KangarooExporter(IKangarooExportWorker<U> worker, IKangarooConverter<T, U> converter, Predicate<T> filter = null)
+        {
+            this.Worker = worker;
+            this.Converter = converter;
+            this.Filter = filter;
+        }
 
 		/// <summary>
 		/// Method for exporting the converted and filtered data utilizing the export worker.
@@ -46,18 +53,22 @@ namespace Kangaroo.Core
 					? input.Where(x => Filter(x))
 					: input;
 
-				if (Converter == null)
-					Worker.Export(list.Select(x => (U)Convert.ChangeType(x, typeof(U))));
-				else
-					Worker.Export(list.Select(x => Converter.Convert(x)));
+                if (Converter == null)
+                {
+                    Worker.Export(list.Select(x => (U)Convert.ChangeType(x, typeof(U))));
+                }
+                else
+                {
+                    Worker.Export(list.Select(x => Converter.Convert(x)));
+                }
 			}
 			catch (NullReferenceException)
 			{
-				throw new NoExportFoundException("");
+				throw new NoExportFoundException("No IKangarooExportWorker was added to KangarooExporter");
 			}
 			catch (Exception exp)
 			{
-				throw exp;
+				throw;
 			}
 		}
 	}

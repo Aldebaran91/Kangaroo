@@ -17,7 +17,7 @@ namespace Kangaroo
 	/// </example>
 	public sealed class KangarooStore<T>
 	{
-        private object dataLock = null;
+        private readonly object dataLock = new object();
 
         private struct KangarooData
         {
@@ -42,6 +42,7 @@ namespace Kangaroo
                 this.Category = category;
             }
         }
+
 		#region Fields
 
 		/// <summary>
@@ -78,10 +79,10 @@ namespace Kangaroo
 		/// </summary>
 		private IList<KangarooData> data { get; } = new List<KangarooData>();
 
-		/// <summary>
-		/// Enumerable property with a collection of specific/custom export handlers to be used.
-		/// </summary>
-		private IList<KangarooExportHandler> ExportHandler { get; set; }
+        /// <summary>
+        /// Enumerable property with a collection of specific/custom export handlers to be used.
+        /// </summary>
+        private IList<KangarooExportHandler> ExportHandler { get; set; } = new List<KangarooExportHandler>();
 
 		/// <summary>
 		/// Property for export settings as defined by specific/custom implementation.
@@ -134,7 +135,9 @@ namespace Kangaroo
                 else
                 {
                     if (dataToExport.ContainsKey(dataSnapshot[i].Category.Identifier) == false)
+                    {
                         dataToExport.Add(dataSnapshot[i].Category.Identifier, new List<T>());
+                    }
 
                     dataToExport[dataSnapshot[i].Category.Identifier].Add(dataSnapshot[i].Data);
                 }
@@ -152,7 +155,9 @@ namespace Kangaroo
                     else
                     {
                         if (dataToExport.ContainsKey(ExportHandler[i].Category.Identifier))
+                        {
                             ExportHandler[i].ExportWorker.Export(dataToExport[ExportHandler[i].Category.Identifier]);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -191,7 +196,9 @@ namespace Kangaroo
                 for (int i = ExportHandler.Count - 1; i >= 0; i--)
                 {
                     if (this.ExportHandler[i].Category.Identifier == category.Identifier)
+                    {
                         this.ExportHandler.RemoveAt(i);
+                    }
                 }
             }
         }

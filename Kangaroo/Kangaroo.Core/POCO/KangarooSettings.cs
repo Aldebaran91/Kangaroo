@@ -11,17 +11,17 @@ namespace Kangaroo.Core
 		/// <summary>
 		///  Boolean member to indicate if the export should be continuous, or data should be collected and exported cumulatively based on a trigger. Corresponding property provides external access to the appropriate value.
 		/// </summary>
-		private bool continousExport;
+		private readonly bool continousExport;
 
 		/// <summary>
 		/// Time interval member to be used as trigger, in case of cumulative export. Corresponding property provides external access to the appropriate value.
 		/// </summary>
-		private TimeSpan interval;
+		private readonly TimeSpan interval;
 
 		/// <summary>
 		/// Integer member to maximize the number of collected data items, in case of cumulative export. Corresponding property provides external access to the appropriate value.
 		/// </summary>
-		private long maxStoredObjects;
+		private readonly long maxStoredObjects;
 
 		/// <summary>
 		/// Enumerable member with a collection of categories to classify the data to be exported. Corresponding property provides external access to the appropriate value.

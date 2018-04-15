@@ -12,23 +12,23 @@ namespace Kangaroo.Core
         /// <summary>
         /// 
         /// </summary>
-        public static KangarooDataCategory Debug = new KangarooDataCategory(0, "Debug");
+        public readonly static KangarooDataCategory Debug = new KangarooDataCategory(0, "Debug");
         /// <summary>
         /// 
         /// </summary>
-        public static KangarooDataCategory Info = new KangarooDataCategory(1, "Info");
+        public readonly static KangarooDataCategory Info = new KangarooDataCategory(1, "Info");
         /// <summary>
         /// 
         /// </summary>
-        public static KangarooDataCategory Warning = new KangarooDataCategory(2, "Warning");
+        public readonly static KangarooDataCategory Warning = new KangarooDataCategory(2, "Warning");
         /// <summary>
         /// 
         /// </summary>
-        public static KangarooDataCategory Error = new KangarooDataCategory(3, "Error");
+        public readonly static KangarooDataCategory Error = new KangarooDataCategory(3, "Error");
         /// <summary>
         /// 
         /// </summary>
-        public static KangarooDataCategory Fatal = new KangarooDataCategory(4, "Fatal");
+        public readonly static KangarooDataCategory Fatal = new KangarooDataCategory(4, "Fatal");
 
         /// <summary>
         /// 

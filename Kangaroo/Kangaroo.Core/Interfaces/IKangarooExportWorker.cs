@@ -13,7 +13,7 @@ namespace Kangaroo.Core
 	/// title="How to create a custom export worker implementation corresponding to the output type"
 	/// language="csharp"/>
 	/// </example>
-	public interface IKangarooExportWorker<T>
+	public interface IKangarooExportWorker<in T>
 	{
 		/// <summary>
 		/// Generic method to export an enumerable collection of data objects.
