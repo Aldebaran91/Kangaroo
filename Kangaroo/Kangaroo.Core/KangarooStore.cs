@@ -125,34 +125,34 @@ namespace Kangaroo
             Dictionary<string, List<T>> dataToExport = new Dictionary<string, List<T>>();
             List<T> dataToExport_uncategorized = new List<T>();
 
-            foreach (KangarooData dataItem in dataSnapshot)
+            for (int i = 0; i < dataSnapshot.Length; i++)
             {
-                if (dataItem.Category == null)
+                if (dataSnapshot[i].Category == null)
                 {
-                    dataToExport_uncategorized.Add(dataItem.Data);
+                    dataToExport_uncategorized.Add(dataSnapshot[i].Data);
                 }
                 else
                 {
-                    if (dataToExport.ContainsKey(dataItem.Category.Identifier) == false)
-                        dataToExport.Add(dataItem.Category.Identifier, new List<T>());
+                    if (dataToExport.ContainsKey(dataSnapshot[i].Category.Identifier) == false)
+                        dataToExport.Add(dataSnapshot[i].Category.Identifier, new List<T>());
 
-                    dataToExport[dataItem.Category.Identifier].Add(dataItem.Data);
+                    dataToExport[dataSnapshot[i].Category.Identifier].Add(dataSnapshot[i].Data);
                 }
             }
             
             List<Exception> exceptions = new List<Exception>();
-            foreach(KangarooExportHandler handler in this.ExportHandler)
+            for (int i = 0; i < ExportHandler.Count; i++)
             {
                 try
                 {
-                    if (handler.Category == null)
+                    if (ExportHandler[i].Category == null)
                     {
-                        handler.ExportWorker.Export(dataToExport_uncategorized);
+                        ExportHandler[i].ExportWorker.Export(dataToExport_uncategorized);
                     }
                     else
                     {
-                        if (dataToExport.ContainsKey(handler.Category.Identifier))
-                            handler.ExportWorker.Export(dataToExport[handler.Category.Identifier]);
+                        if (dataToExport.ContainsKey(ExportHandler[i].Category.Identifier))
+                            ExportHandler[i].ExportWorker.Export(dataToExport[ExportHandler[i].Category.Identifier]);
                     }
                 }
                 catch (Exception ex)
