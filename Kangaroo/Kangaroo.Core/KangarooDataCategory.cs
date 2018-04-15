@@ -45,7 +45,7 @@ namespace Kangaroo.Core
         /// </summary>
         /// <param name="level"></param>
         /// <param name="identifier"></param>
-        private KangarooDataCategory(int level, string identifier)
+        private KangarooDataCategory(byte level, string identifier)
         {
             this.Level = level;
             this.Identifier = identifier;

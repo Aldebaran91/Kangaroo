@@ -44,11 +44,6 @@ namespace Kangaroo
 		#region Fields
 
 		/// <summary>
-		/// Member to define instance belonging to the intantiated object.
-		/// </summary>
-		private static KangarooStore<T> instance;
-
-		/// <summary>
 		/// Member for export settings.
 		/// </summary>
 		private KangarooSettings settings;
@@ -118,7 +113,50 @@ namespace Kangaroo
 		/// </summary>
 		public void StartExport()
 		{
-			
+            Dictionary<string, List<T>> dataToExport = new Dictionary<string, List<T>>();
+            List<T> dataToExport_uncategorized = new List<T>();
+
+            foreach (KangarooData dataItem in this.data)
+            {
+                if (dataItem.Category == null)
+                {
+                    dataToExport_uncategorized.Add(dataItem.Data);
+                }
+                else
+                {
+                    if (dataToExport.ContainsKey(dataItem.Category.Identifier) == false)
+                        dataToExport.Add(dataItem.Category.Identifier, new List<T>());
+
+                    dataToExport[dataItem.Category.Identifier].Add(dataItem.Data);
+                }
+            }
+            this.data.Clear();
+
+            List<Exception> exceptions = new List<Exception>();
+            foreach(KangarooExportHandler handler in this.ExportHandler)
+            {
+                try
+                {
+                    if (handler.Category == null)
+                    {
+                        handler.ExportWorker.Export(dataToExport_uncategorized);
+                    }
+                    else
+                    {
+                        if (dataToExport.ContainsKey(handler.Category.Identifier))
+                            handler.ExportWorker.Export(dataToExport[handler.Category.Identifier]);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
+            }
+
+            if (exceptions.Count > 0)
+            {
+               throw new AggregateException(exceptions.ToArray());
+            }
 		}
 
 		/// <summary>
@@ -129,5 +167,35 @@ namespace Kangaroo
 		{
 			throw new NotImplementedException();
 		}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="category"></param>
+        public void ClearExporter(KangarooDataCategory category = null)
+        {
+            if (category == null)
+            {
+                this.ExportHandler.Clear();
+            }
+            else
+            {
+                for (int i = ExportHandler.Count - 1; i >= 0; i--)
+                {
+                    if (this.ExportHandler[i].Category.Identifier == category.Identifier)
+                        this.ExportHandler.RemoveAt(i);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="exportWorker"></param>
+        /// <param name="category"></param>
+        public void AddExporter(IKangarooExportWorker<T> exportWorker, KangarooDataCategory category = null)
+        {
+            this.ExportHandler.Add(new KangarooExportHandler(exportWorker, category));
+        }
 	}
 }

@@ -28,8 +28,11 @@ namespace Kangaroo.Docu
 			// Set the Worker property of the exporter to an instance of a custom export worker, in this case for writing genetrated string output to the console
 			exporter.Worker = new KangarooExportWorkerStringToConsole();
 
-			// Add the custom exporter to the export handler (list of exporters to be managed by the library)
-			kangaroo.ExportHandler.Add(exporter);
+            // Add the custom exporter to the export handler for uncategorized items(list of exporters to be managed by the library)
+            kangaroo.AddExporter(exporter);
+
+            // Add the custom exporter to the export handler for debug items(list of exporters to be managed by the library)
+            kangaroo.AddExporter(exporter, KangarooDataCategory.Debug);
 
             // A wild exception occurs
             try
