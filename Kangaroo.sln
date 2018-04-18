@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.Docu", "Kangaroo.D
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "KangarooHelpFile", "KangarooHelpFile\KangarooHelpFile.shfbproj", "{D030E5F4-67E7-4B75-A78F-873D4813416D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Demo", "Kangaroo.Demo\Kangaroo.Demo.csproj", "{7DB32760-114C-496C-B5E9-30F6E2372749}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D030E5F4-67E7-4B75-A78F-873D4813416D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D030E5F4-67E7-4B75-A78F-873D4813416D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D030E5F4-67E7-4B75-A78F-873D4813416D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DB32760-114C-496C-B5E9-30F6E2372749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DB32760-114C-496C-B5E9-30F6E2372749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DB32760-114C-496C-B5E9-30F6E2372749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DB32760-114C-496C-B5E9-30F6E2372749}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
