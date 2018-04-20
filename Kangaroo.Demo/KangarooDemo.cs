@@ -56,15 +56,8 @@ namespace Kangaroo.Demo
 
             for (int i = 0; i < 7; i++)
             {
-                try
-                {
-                    throw new ArgumentException($"This is an exception message! {i}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($">> Add {i + 1}. exception!");
-                    kangaroo.AddData(ex);
-                }
+                Console.WriteLine($">> Add {i + 1}. exception!");
+                kangaroo.AddData(new ArgumentException($"This is an exception message! {i}"));
             }
 
             Task.Delay(1100).Wait();
@@ -103,15 +96,8 @@ namespace Kangaroo.Demo
 
             for (int i = 0; i < 7; i++)
             {
-                try
-                {
-                    throw new ArgumentException($"This is an exception message! {i}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($">> Add {i + 1}. exception!");
-                    kangaroo.AddData(ex);
-                }
+                Console.WriteLine($">> Add {i + 1}. exception!");
+                kangaroo.AddData(new ArgumentException($"This is an exception message! {i}"));
             }
 
             Console.WriteLine(">> END DEMO");
@@ -144,15 +130,8 @@ namespace Kangaroo.Demo
             // Add exporter to kangaroo store
             kangaroo.AddExporter(exporter);
 
-            try
-            {
-                throw new ArgumentException("This is an exception message!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($">> Add an exception!");
-                kangaroo.AddData(ex);
-            }
+            Console.WriteLine($">> Add an exception!");
+            kangaroo.AddData(new ArgumentException("This is an exception message!"));
 
             Console.WriteLine(">> Start export!");
             kangaroo.StartManualExport();
