@@ -25,19 +25,19 @@ namespace Kangaroo.Core
         /// Corresponding property provides external access to the appropriate value.
         /// </summary>
         private IReadOnlyList<string> categories = null;
-        
+
         public KangarooSettings(long maxStoredObjects = 0, IReadOnlyList<string> categories = null)
         {
             this.maxStoredObjects = maxStoredObjects;
             this.categories = categories;
         }
-        
+
         public KangarooSettings(TimeSpan interval, IReadOnlyList<string> categories = null)
         {
             this.interval = interval;
             this.categories = categories;
         }
-       
+
         /// <summary>
         /// Time interval property to be used as trigger, in case of cumulative export.
         /// </summary>

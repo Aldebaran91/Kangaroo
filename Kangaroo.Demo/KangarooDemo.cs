@@ -1,22 +1,28 @@
-﻿using System;
+﻿using Kangaroo.Core;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Kangaroo.Core;
-
 
 namespace Kangaroo.Demo
 {
-    class KangarooDemo
+    internal class KangarooDemo
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             StartTimebasedExport();
+            Console.WriteLine();
+
+            StartAutomaticMax5ItemsExport();
+            Console.WriteLine();
+
+            StartManuelExport();
         }
 
         public static void StartTimebasedExport()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(">> Kangaroo Demo!");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(">>>> Kangaroo Demo: Automatic export afte 1 sec");
+            Console.ResetColor();
 
             // Create kangaroostore instance
             KangarooStore<Exception> kangaroo = new KangarooStore<Exception>(new KangarooSettings(TimeSpan.FromSeconds(1), null));
@@ -39,16 +45,15 @@ namespace Kangaroo.Demo
             // Add exporter to kangaroo store
             kangaroo.AddExporter(exporter);
 
-            Console.ResetColor();
-            Console.WriteLine(">> Throw ArgumentException!");
             for (int i = 0; i < 7; i++)
             {
                 try
                 {
-                    throw new ArgumentException($"This is a exception message! {i}");
+                    throw new ArgumentException($"This is an exception message! {i}");
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine($">> Add {i + 1}. exception!");
                     kangaroo.AddData(ex);
                 }
             }
@@ -60,8 +65,9 @@ namespace Kangaroo.Demo
 
         public static void StartAutomaticMax5ItemsExport()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(">> Kangaroo Demo!");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(">>>> Kangaroo Demo: Automatic export MAX 5 items");
+            Console.ResetColor();
 
             // Create kangaroostore instance
             KangarooStore<Exception> kangaroo = new KangarooStore<Exception>(new KangarooSettings(5, null));
@@ -84,16 +90,15 @@ namespace Kangaroo.Demo
             // Add exporter to kangaroo store
             kangaroo.AddExporter(exporter);
 
-            Console.ResetColor();
-            Console.WriteLine(">> Throw ArgumentException!");
             for (int i = 0; i < 7; i++)
             {
                 try
                 {
-                    throw new ArgumentException($"This is a exception message! {i}");
+                    throw new ArgumentException($"This is an exception message! {i}");
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine($">> Add {i + 1}. exception!");
                     kangaroo.AddData(ex);
                 }
             }
@@ -103,8 +108,9 @@ namespace Kangaroo.Demo
 
         public static void StartManuelExport()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(">> Kangaroo Demo!");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(">>>> Kangaroo Demo: Manuel export");
+            Console.ResetColor();
 
             // Create kangaroostore instance
             KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
@@ -127,21 +133,20 @@ namespace Kangaroo.Demo
             // Add exporter to kangaroo store
             kangaroo.AddExporter(exporter);
 
-            Console.ResetColor();
-            Console.WriteLine(">> Throw ArgumentException!");
             try
             {
-                throw new ArgumentException("This is a exception message!");
+                throw new ArgumentException("This is an exception message!");
             }
             catch (Exception ex)
             {
+                Console.WriteLine($">> Add an exception!");
                 kangaroo.AddData(ex);
             }
 
-            Console.WriteLine(">> Start export of kangaroo manualy.\n");
+            Console.WriteLine(">> Start export!");
             kangaroo.StartExport();
+            Console.WriteLine(">> END DEMO");
         }
-
 
         public class KangarooConvertExcpetionToString : IKangarooConverter<Exception, string>
         {

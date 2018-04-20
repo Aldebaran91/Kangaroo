@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -116,7 +115,7 @@ namespace Kangaroo
         /// <param name="data">The data which should be exported later.</param>
         public void AddData(T data)
         {
-            this.data.Add(new KangarooData(data, null));
+            this.AddData(data, null);
         }
 
         /// <summary>
