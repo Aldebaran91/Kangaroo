@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Kangaroo
@@ -18,6 +20,9 @@ namespace Kangaroo
     /// </example>
     public sealed class KangarooStore<T>
     {
+        private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private CancellationToken cancellationToken = new CancellationToken();
+        private Task intervalExporter;
         private readonly object dataLock = new object();
 
         private struct KangarooData
@@ -60,6 +65,7 @@ namespace Kangaroo
         /// </summary>
         public KangarooStore()
         {
+            this.settings = new KangarooSettings();
         }
 
         /// <summary>
@@ -69,6 +75,18 @@ namespace Kangaroo
         public KangarooStore(KangarooSettings settings)
         {
             this.settings = settings;
+
+            if (settings.Inverval != TimeSpan.Zero)
+            {
+                Task.Run(() =>
+                {
+                    while (!cancellationToken.IsCancellationRequested)
+                    {
+                        Task.Delay(settings.Inverval).Wait();
+                        StartExport();
+                    }
+                });
+            }
         }
 
         #endregion Constructor
@@ -108,7 +126,17 @@ namespace Kangaroo
         /// <param name="category">Provides the ability to categories the data.</param>
         public void AddData(T data, KangarooDataCategory category)
         {
-            this.data.Add(new KangarooData(data, category));
+            int count = 0;
+            lock (dataLock)
+            {
+                this.data.Add(new KangarooData(data, category));
+                count = this.data.Count;
+            }
+
+            if (settings.MaxStoredObjects > 0 && count >= settings.MaxStoredObjects)
+            {
+                StartExport();
+            }
         }
 
         /// <summary>
