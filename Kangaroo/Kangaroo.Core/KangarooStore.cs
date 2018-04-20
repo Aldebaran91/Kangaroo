@@ -26,9 +26,9 @@ namespace Kangaroo
         private struct KangarooData
         {
             public T Data;
-            public KangarooDataCategory Category;
+            public Enum Category;
 
-            public KangarooData(T data, KangarooDataCategory category)
+            public KangarooData(T data, Enum category)
             {
                 this.Data = data;
                 this.Category = category;
@@ -38,9 +38,9 @@ namespace Kangaroo
         private struct KangarooExportHandler
         {
             public IKangarooExportWorker<T> ExportWorker;
-            public KangarooDataCategory Category;
+            public Enum Category;
 
-            public KangarooExportHandler(IKangarooExportWorker<T> exportWorker, KangarooDataCategory category)
+            public KangarooExportHandler(IKangarooExportWorker<T> exportWorker, Enum category)
             {
                 this.ExportWorker = exportWorker;
                 this.Category = category;
@@ -115,7 +115,7 @@ namespace Kangaroo
         /// </summary>
         /// <param name="data">The data which should be exported later.</param>
         /// <param name="category">Provides the ability to categories the data.</param>
-        public void AddData(T data, KangarooDataCategory category)
+        public void AddData(T data, Enum category)
         {
             int count = 0;
             lock (dataLock)
@@ -143,7 +143,7 @@ namespace Kangaroo
                 this.data.Clear();
             }
 
-            Dictionary<string, List<T>> dataToExport = new Dictionary<string, List<T>>();
+            Dictionary<Enum, List<T>> dataToExport = new Dictionary<Enum, List<T>>();
             List<T> dataToExport_uncategorized = new List<T>();
 
             for (int i = 0; i < dataSnapshot.Length; i++)
@@ -154,12 +154,12 @@ namespace Kangaroo
                 }
                 else
                 {
-                    if (dataToExport.ContainsKey(dataSnapshot[i].Category.Identifier) == false)
+                    if (dataToExport.ContainsKey(dataSnapshot[i].Category) == false)
                     {
-                        dataToExport.Add(dataSnapshot[i].Category.Identifier, new List<T>());
+                        dataToExport.Add(dataSnapshot[i].Category, new List<T>());
                     }
 
-                    dataToExport[dataSnapshot[i].Category.Identifier].Add(dataSnapshot[i].Data);
+                    dataToExport[dataSnapshot[i].Category].Add(dataSnapshot[i].Data);
                 }
             }
 
@@ -172,9 +172,9 @@ namespace Kangaroo
                     {
                         ExportHandler[i].ExportWorker.Export(dataToExport_uncategorized.ToArray());
                     }
-                    else if (dataToExport.ContainsKey(ExportHandler[i].Category.Identifier))
+                    else if (dataToExport.ContainsKey(ExportHandler[i].Category))
                     {
-                        ExportHandler[i].ExportWorker.Export(dataToExport[ExportHandler[i].Category.Identifier].ToArray());
+                        ExportHandler[i].ExportWorker.Export(dataToExport[ExportHandler[i].Category].ToArray());
                     }
                 }
                 catch (Exception ex)
@@ -224,7 +224,7 @@ namespace Kangaroo
         ///
         /// </summary>
         /// <param name="category"></param>
-        public void ClearExporter(KangarooDataCategory category = null)
+        public void ClearExporter(Enum category = null)
         {
             if (category == null)
             {
@@ -232,7 +232,7 @@ namespace Kangaroo
             }
             else
             {
-                this.ExportHandler = this.ExportHandler.Where(x => x.Category.Identifier == category.Identifier).ToList();
+                this.ExportHandler = this.ExportHandler.Where(x => x.Category.Equals(category)).ToList();
             }
         }
 
@@ -241,7 +241,7 @@ namespace Kangaroo
         /// </summary>
         /// <param name="exportWorker"></param>
         /// <param name="category"></param>
-        public void AddExporter(IKangarooExportWorker<T> exportWorker, KangarooDataCategory category = null)
+        public void AddExporter(IKangarooExportWorker<T> exportWorker, Enum category = null)
         {
             this.ExportHandler.Add(new KangarooExportHandler(exportWorker, category));
         }

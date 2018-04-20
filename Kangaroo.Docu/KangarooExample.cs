@@ -6,6 +6,14 @@ namespace Kangaroo.Docu
 {
     public class KangarooExample
     {
+        public enum MyEnum
+        {
+            Debug,
+            Error,
+            Warining,
+            Fatal
+        }
+
         public void CreateKangaroo()
         {
             #region Example1
@@ -33,7 +41,7 @@ namespace Kangaroo.Docu
             kangaroo.AddExporter(exporter);
 
             // Add the custom exporter to the export handler for debug items(list of exporters to be managed by the library)
-            kangaroo.AddExporter(exporter, KangarooDataCategory.Debug);
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
 
             // A wild exception occurs
             try
@@ -45,7 +53,7 @@ namespace Kangaroo.Docu
                 // Log the exception without specifying a category
                 kangaroo.AddData(ex);
                 // Log the exception with a specific category
-                kangaroo.AddData(ex, KangarooDataCategory.Debug);
+                kangaroo.AddData(ex, MyEnum.Debug);
             }
 
             #endregion Example1
