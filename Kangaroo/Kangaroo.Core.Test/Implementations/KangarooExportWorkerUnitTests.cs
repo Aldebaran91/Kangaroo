@@ -14,7 +14,7 @@ namespace Kangaroo.Core.Test.Implementations
             StringWriter sw = new StringWriter();
             Console.SetOut(sw);
             var obj = new KangarooExportWorkerStringToConsole();
-            List<string> test = new List<string> { "a", "b", "c" };
+            var test = new string[] { "a", "b", "c" };
             obj.Export(test);
             Assert.AreEqual<string>("abc", sw.ToString());
             sw.Close();
@@ -22,10 +22,12 @@ namespace Kangaroo.Core.Test.Implementations
 
         public class KangarooExportWorkerStringToConsole : IKangarooExportWorker<string>
         {
-            public void Export(IEnumerable<string> input)
+            public void Export(string[] input)
             {
                 foreach (var item in input)
-                    System.Console.Write(item);
+                {
+                    Console.Write(item);
+                }
             }
         }
     }

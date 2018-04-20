@@ -20,7 +20,6 @@ namespace Kangaroo
     public sealed class KangarooStore<T>
     {
         private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        private CancellationToken cancellationToken = new CancellationToken();
         private Task intervalExporter;
         private readonly object dataLock = new object();
 
@@ -77,14 +76,7 @@ namespace Kangaroo
 
             if (settings.Inverval != TimeSpan.Zero)
             {
-                Task.Run(() =>
-                {
-                    while (!cancellationToken.IsCancellationRequested)
-                    {
-                        Task.Delay(settings.Inverval).Wait();
-                        StartExport();
-                    }
-                });
+                StartTimebasedExport();
             }
         }
 
@@ -134,14 +126,14 @@ namespace Kangaroo
 
             if (settings.MaxStoredObjects > 0 && count >= settings.MaxStoredObjects)
             {
-                StartExport();
+                StartManualExport();
             }
         }
 
         /// <summary>
         /// Method for staring the export.
         /// </summary>
-        public void StartExport()
+        public void StartManualExport()
         {
             KangarooData[] dataSnapshot = null;
             lock (dataLock)
@@ -178,11 +170,11 @@ namespace Kangaroo
                 {
                     if (ExportHandler[i].Category == null)
                     {
-                        ExportHandler[i].ExportWorker.Export(dataToExport_uncategorized);
+                        ExportHandler[i].ExportWorker.Export(dataToExport_uncategorized.ToArray());
                     }
                     else if (dataToExport.ContainsKey(ExportHandler[i].Category.Identifier))
                     {
-                        ExportHandler[i].ExportWorker.Export(dataToExport[ExportHandler[i].Category.Identifier]);
+                        ExportHandler[i].ExportWorker.Export(dataToExport[ExportHandler[i].Category.Identifier].ToArray());
                     }
                 }
                 catch (Exception ex)
@@ -201,9 +193,31 @@ namespace Kangaroo
         /// Method for asynchronously starting the export. Ansynchronous export is realized by returning a value of type Task.
         /// </summary>
         /// <returns>Returns a task.</returns>
-        public Task StartExportAsync()
+        public Task StartManualExportAsync()
         {
-            return Task.Run(() => StartExport());
+            return Task.Run(() => StartManualExport());
+        }
+
+        public void StartTimebasedExport()
+        {
+            if (intervalExporter == null || intervalExporter.Status != TaskStatus.Running)
+            {
+                var token = cancellationTokenSource.Token;
+                Task.Run(() =>
+                {
+                    while (!token.IsCancellationRequested)
+                    {
+                        Task.Delay(settings.Inverval).Wait();
+                        StartManualExport();
+                    }
+                });
+            }
+        }
+
+        public void StopTimebasedExport()
+        {
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource = new CancellationTokenSource();
         }
 
         /// <summary>

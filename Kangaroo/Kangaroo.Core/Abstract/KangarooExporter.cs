@@ -38,7 +38,7 @@ namespace Kangaroo.Core
         /// Method for exporting the converted and filtered data utilizing the export worker.
         /// </summary>
         /// <param name="input">Enumerable collection of data as input for the export.</param>
-        public void Export(IEnumerable<T> input)
+        public void Export(T[] input)
         {
             try
             {
@@ -48,11 +48,11 @@ namespace Kangaroo.Core
 
                 if (Converter == null)
                 {
-                    Worker.Export(list.Select(x => (U)Convert.ChangeType(x, typeof(U))));
+                    Worker.Export(list.Select(x => (U)Convert.ChangeType(x, typeof(U))).ToArray());
                 }
                 else
                 {
-                    Worker.Export(list.Select(x => Converter.Convert(x)));
+                    Worker.Export(list.Select(x => Converter.Convert(x)).ToArray());
                 }
             }
             catch (NullReferenceException)

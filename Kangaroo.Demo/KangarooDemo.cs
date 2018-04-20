@@ -25,7 +25,7 @@ namespace Kangaroo.Demo
             Console.ResetColor();
 
             // Create kangaroostore instance
-            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>(new KangarooSettings(TimeSpan.FromSeconds(1), null));
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>(new KangarooSettings(TimeSpan.FromSeconds(1)));
 
             // Create kangaroo export handler
             KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
@@ -61,6 +61,8 @@ namespace Kangaroo.Demo
             Task.Delay(1100).Wait();
 
             Console.WriteLine(">> END DEMO");
+
+            kangaroo.StopTimebasedExport();
         }
 
         public static void StartAutomaticMax5ItemsExport()
@@ -70,7 +72,7 @@ namespace Kangaroo.Demo
             Console.ResetColor();
 
             // Create kangaroostore instance
-            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>(new KangarooSettings(5, null));
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>(new KangarooSettings(5));
 
             // Create kangaroo export handler
             KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
@@ -144,7 +146,7 @@ namespace Kangaroo.Demo
             }
 
             Console.WriteLine(">> Start export!");
-            kangaroo.StartExport();
+            kangaroo.StartManualExport();
             Console.WriteLine(">> END DEMO");
         }
 
@@ -165,15 +167,16 @@ namespace Kangaroo.Demo
 
         public class KangarooExportWorkerStringToConsole : IKangarooExportWorker<string>
         {
-            public void Export(IEnumerable<string> input)
+            public void Export(string[] input)
             {
                 foreach (var item in input)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write($"Kangaroo>> ");
+                    Console.Write($"Export: ");
                     Console.ResetColor();
                     Console.WriteLine(item);
                 }
+                Console.WriteLine($"{input.Length} item(s) exported.");
             }
         }
     }

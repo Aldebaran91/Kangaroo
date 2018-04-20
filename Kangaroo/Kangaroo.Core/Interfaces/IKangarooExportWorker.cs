@@ -19,6 +19,6 @@ namespace Kangaroo.Core
         /// Generic method to export an enumerable collection of data objects.
         /// </summary>
         /// <param name="input">T is the generic type for the input.</param>
-        void Export(IEnumerable<T> input);
+        void Export(T[] input);
     }
 }
