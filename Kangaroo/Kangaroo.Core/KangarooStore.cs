@@ -200,24 +200,31 @@ namespace Kangaroo
 
         public void StartTimebasedExport()
         {
-            if (intervalExporter == null || intervalExporter.Status != TaskStatus.Running)
+            lock (dataLock)
             {
-                var token = cancellationTokenSource.Token;
-                Task.Run(() =>
+                if (intervalExporter == null)
                 {
-                    while (!token.IsCancellationRequested)
+                    var token = cancellationTokenSource.Token;
+                    intervalExporter = Task.Run(() =>
                     {
-                        Task.Delay(settings.Inverval).Wait();
-                        StartManualExport();
-                    }
-                });
+                        while (!token.IsCancellationRequested)
+                        {
+                            Task.Delay(settings.Inverval).Wait();
+                            StartManualExport();
+                        }
+                    });
+                }
             }
         }
 
         public void StopTimebasedExport()
         {
-            cancellationTokenSource.Cancel();
-            cancellationTokenSource = new CancellationTokenSource();
+            lock (dataLock)
+            {
+                cancellationTokenSource.Cancel();
+                cancellationTokenSource = new CancellationTokenSource();
+                intervalExporter = null;
+            }
         }
 
         /// <summary>
