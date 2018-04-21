@@ -102,20 +102,11 @@ namespace Kangaroo
         #endregion Properties
 
         /// <summary>
-        /// Method for adding data to the collection of data objects to be exported.
-        /// </summary>
-        /// <param name="data">The data which should be exported later.</param>
-        public void AddData(T data)
-        {
-            this.AddData(data, null);
-        }
-
-        /// <summary>
         /// Overloaded method for addig data to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
         /// </summary>
         /// <param name="data">The data which should be exported later.</param>
         /// <param name="category">Provides the ability to categories the data.</param>
-        public void AddData(T data, Enum category)
+        public void AddData(T data, Enum category = null)
         {
             int count = 0;
             lock (dataLock)
@@ -227,10 +218,6 @@ namespace Kangaroo
             }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="category"></param>
         public void ClearExporter(Enum category = null)
         {
             if (category == null)
@@ -242,12 +229,7 @@ namespace Kangaroo
                 this.ExportHandler = this.ExportHandler.Where(x => x.Category.Equals(category)).ToList();
             }
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="exportWorker"></param>
-        /// <param name="category"></param>
+        
         public void AddExporter(IKangarooExportWorker<T> exportWorker, Enum category = null)
         {
             this.ExportHandler.Add(new KangarooExportHandler(exportWorker, category));
