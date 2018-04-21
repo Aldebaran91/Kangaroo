@@ -1,5 +1,4 @@
 ﻿using Kangaroo.Core;
-using System.Collections.Generic;
 
 namespace Kangaroo.Docu.Implementations
 {

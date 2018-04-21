@@ -1,12 +1,18 @@
 ﻿using Kangaroo.Core;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Kangaroo.Demo
 {
     internal class KangarooDemo
     {
+        public enum MyEnum
+        {
+            Debug,
+            Warning,
+            Fatal
+        }
+
         private static void Main(string[] args)
         {
             StartTimebasedExport();
@@ -16,6 +22,9 @@ namespace Kangaroo.Demo
             Console.WriteLine();
 
             StartManuelExport();
+            Console.WriteLine();
+
+            StartManuelCategoryExport();
         }
 
         public static void StartTimebasedExport()
@@ -47,15 +56,8 @@ namespace Kangaroo.Demo
 
             for (int i = 0; i < 7; i++)
             {
-                try
-                {
-                    throw new ArgumentException($"This is an exception message! {i}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($">> Add {i + 1}. exception!");
-                    kangaroo.AddData(ex);
-                }
+                Console.WriteLine($">> Add {i + 1}. exception!");
+                kangaroo.AddData(new ArgumentException($"This is an exception message! {i}"));
             }
 
             Task.Delay(1100).Wait();
@@ -94,15 +96,8 @@ namespace Kangaroo.Demo
 
             for (int i = 0; i < 7; i++)
             {
-                try
-                {
-                    throw new ArgumentException($"This is an exception message! {i}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($">> Add {i + 1}. exception!");
-                    kangaroo.AddData(ex);
-                }
+                Console.WriteLine($">> Add {i + 1}. exception!");
+                kangaroo.AddData(new ArgumentException($"This is an exception message! {i}"));
             }
 
             Console.WriteLine(">> END DEMO");
@@ -135,15 +130,44 @@ namespace Kangaroo.Demo
             // Add exporter to kangaroo store
             kangaroo.AddExporter(exporter);
 
-            try
-            {
-                throw new ArgumentException("This is an exception message!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($">> Add an exception!");
-                kangaroo.AddData(ex);
-            }
+            Console.WriteLine($">> Add an exception!");
+            kangaroo.AddData(new ArgumentException("This is an exception message!"));
+
+            Console.WriteLine(">> Start export!");
+            kangaroo.StartManualExport();
+            Console.WriteLine(">> END DEMO");
+        }
+
+        public static void StartManuelCategoryExport()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(">>>> Kangaroo Demo: Manuel export");
+            Console.ResetColor();
+
+            // Create kangaroostore instance
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
+
+            // Create kangaroo export handler
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+
+            // Add converter
+            exporter.Converter = new KangarooConvertExcpetionToString();
+
+            // Add filter
+            exporter.Filter = (x) =>
+                {
+                    return x is ArgumentException;
+                };
+
+            // Add exporter
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
+
+            // Add exporter to kangaroo store
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
+
+            Console.WriteLine($">> Add an exception!");
+            kangaroo.AddData(new ArgumentException("Fatal bug!"), MyEnum.Fatal);
+            kangaroo.AddData(new ArgumentException("Normal bug!"), MyEnum.Debug);
 
             Console.WriteLine(">> Start export!");
             kangaroo.StartManualExport();

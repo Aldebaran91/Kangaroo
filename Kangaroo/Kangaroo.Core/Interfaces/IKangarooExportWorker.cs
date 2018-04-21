@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Kangaroo.Core
+﻿namespace Kangaroo.Core
 {
     /// <summary>
     /// Defines the generic method to be implemented for custom export worker implemenations.
