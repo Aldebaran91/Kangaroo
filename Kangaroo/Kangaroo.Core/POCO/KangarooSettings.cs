@@ -32,11 +32,17 @@ namespace Kangaroo.Core
         /// <summary>
         /// Time interval property to be used as trigger, in case of cumulative export.
         /// </summary>
-        public TimeSpan Inverval { get => interval; }
+        public TimeSpan Inverval
+        {
+            get => interval;
+        }
 
         /// <summary>
         /// Integer property to maximize the number of collected data items, in case of cumulative export.
         /// </summary>
-        public long MaxStoredObjects { get => maxStoredObjects; }
+        public long MaxStoredObjects
+        {
+            get => maxStoredObjects;
+        }
     }
 }

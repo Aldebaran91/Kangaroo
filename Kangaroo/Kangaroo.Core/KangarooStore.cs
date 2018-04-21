@@ -100,22 +100,13 @@ namespace Kangaroo
         public KangarooSettings Settings { get => settings; set => settings = value; }
 
         #endregion Properties
-
-        /// <summary>
-        /// Method for adding data to the collection of data objects to be exported.
-        /// </summary>
-        /// <param name="data">The data which should be exported later.</param>
-        public void AddData(T data)
-        {
-            this.AddData(data, null);
-        }
-
+        
         /// <summary>
         /// Overloaded method for addig data to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
         /// </summary>
         /// <param name="data">The data which should be exported later.</param>
         /// <param name="category">Provides the ability to categories the data.</param>
-        public void AddData(T data, Enum category)
+        public void AddData(T data, KangarooDataCategory category = null)
         {
             int count = 0;
             lock (dataLock)
@@ -226,11 +217,7 @@ namespace Kangaroo
                 intervalExporter = null;
             }
         }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="category"></param>
+        
         public void ClearExporter(Enum category = null)
         {
             if (category == null)
