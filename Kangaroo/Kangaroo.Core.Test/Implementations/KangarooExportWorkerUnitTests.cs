@@ -8,7 +8,7 @@ namespace Kangaroo.Core.Test.Implementations
     public class KangarooExportWorkerUnitTests
     {
         [TestMethod]
-        public void KangarooExportWorkerTestMethod1()
+        public void KangarooExportWorkerTestMethodExport()
         {
             StringWriter sw = new StringWriter();
             Console.SetOut(sw);

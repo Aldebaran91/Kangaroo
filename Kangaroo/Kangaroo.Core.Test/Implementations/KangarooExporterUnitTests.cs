@@ -7,7 +7,7 @@ namespace Kangaroo.Core.Test.Implementations
 	public class KangarooExporterUnitTests
 	{
 		[TestMethod]
-		public void KangarooExporterTestMethod1()
+		public void KangarooExporterTestMethodExport()
 		{
 			var obj = new KangarooExceptionExporter();
 			obj.Worker = new KangarooExportWorkerStringToConsole();

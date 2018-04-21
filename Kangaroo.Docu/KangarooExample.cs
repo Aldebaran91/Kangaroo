@@ -10,7 +10,7 @@ namespace Kangaroo.Docu
         {
             Debug,
             Error,
-            Warining,
+            Warning,
             Fatal
         }
 
@@ -40,8 +40,9 @@ namespace Kangaroo.Docu
             // Add the custom exporter to the export handler for uncategorized items(list of exporters to be managed by the library)
             kangaroo.AddExporter(exporter);
 
-            // Add the custom exporter to the export handler for debug items(list of exporters to be managed by the library)
-            kangaroo.AddExporter(exporter, MyEnum.Debug);
+			// Add the custom exporter to the export handler for debug items(list of exporters to be managed by the library)
+			// Define your categories in an enum like the following example: public enum MyEnum{Debug,Error,Warning,Fatal}
+			kangaroo.AddExporter(exporter, MyEnum.Debug);
 
             // A wild exception occurs
             try

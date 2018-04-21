@@ -7,7 +7,7 @@ namespace Kangaroo.Core.Test.Implementations
     public class KangarooConverterUnitTests
     {
         [TestMethod]
-        public void KangarooConverterTestMethod1()
+        public void KangarooConverterTestMethodConvert()
         {
             var obj = new KangarooConvertExcpetionToString();
             var result = obj.Convert(new Exception());
