@@ -40,28 +40,22 @@ namespace Kangaroo.Core
         /// <param name="input">Enumerable collection of data as input for the export.</param>
         public void Export(T[] input)
         {
-            try
-            {
-                IEnumerable<T> list = (Filter != null)
-                    ? input.Where(x => Filter(x))
-                    : input;
-
-                if (Converter == null)
-                {
-                    Worker.Export(list.Select(x => (U)Convert.ChangeType(x, typeof(U))).ToArray());
-                }
-                else
-                {
-                    Worker.Export(list.Select(x => Converter.Convert(x)).ToArray());
-                }
-            }
-            catch (NullReferenceException)
+            if (Worker == null)
             {
                 throw new NoExportFoundException("No IKangarooExportWorker was added to KangarooExporter");
             }
-            catch (Exception exp)
+
+            IEnumerable<T> list = (Filter != null)
+                ? input.Where(x => Filter(x))
+                : input;
+
+            if (Converter == null)
             {
-                throw;
+                Worker.Export(list.Select(x => (U)Convert.ChangeType(x, typeof(U))).ToArray());
+            }
+            else
+            {
+                Worker.Export(list.Select(x => Converter.Convert(x)).ToArray());
             }
         }
     }

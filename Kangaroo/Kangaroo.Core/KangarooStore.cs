@@ -224,6 +224,10 @@ namespace Kangaroo
             }
         }
 
+        /// <summary>
+        /// Method for clearing the registered export hanlders, items belonging to a category can be deleted selectively by passing a category paramteter
+        /// </summary>
+        /// <param name="category">Category of export handlers to be selected for deletion.</param>
         public void ClearExporter(Enum category = null)
         {
             if (category == null)
@@ -235,7 +239,12 @@ namespace Kangaroo
                 this.ExportHandler = this.ExportHandler.Where(x => x.Category.Equals(category)).ToList();
             }
         }
-        
+
+        /// <summary>
+        /// Method for registering an export handler.
+        /// </summary>
+        /// <param name="exportWorker">Export worker to be assigned to the exporter.</param>
+        /// <param name="category">Caterty to define which items should be handled by the exporter.</param>
         public void AddExporter(IKangarooExportWorker<T> exportWorker, Enum category = null)
         {
             this.ExportHandler.Add(new KangarooExportHandler(exportWorker, category));
