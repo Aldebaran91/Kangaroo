@@ -100,7 +100,7 @@ namespace Kangaroo
         public KangarooSettings Settings { get => settings; set => settings = value; }
 
         #endregion Properties
-
+        
         /// <summary>
         /// Overloaded method for addig data to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
         /// </summary>
