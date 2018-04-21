@@ -17,16 +17,15 @@ namespace Kangaroo.Core.Test.Implementations
 			test[0] = new Exception();
 			test[1] = new Exception();
 			obj.Export(test);
-
 		}
 
 		public class KangarooExceptionExporter : KangarooExporter<Exception, string>
 		{
 			// Create Converter property for the custom Converter implementation
-			public IKangarooConverter<Exception, string> Converter { get; set; }
+			public override IKangarooConverter<Exception, string> Converter { get; set; }
 
 			// Create Worker property for the custom Worker implemenation
-			public IKangarooExportWorker<string> Worker { get; set; }
+			public override IKangarooExportWorker<string> Worker { get; set; }
 		}
 
 		public class KangarooConvertExcpetionToString : IKangarooConverter<Exception, string>

@@ -22,17 +22,17 @@ namespace Kangaroo.Core
         /// <summary>
         /// Property to set criteria for filtering data to be exported.
         /// </summary>
-        public Predicate<T> Filter { get; set; }
+        public virtual Predicate<T> Filter { get; set; }
 
         /// <summary>
         /// Property to specify data conversion in prepreration for the export.
         /// </summary>
-        public IKangarooConverter<T, U> Converter { get; set; }
+        public virtual IKangarooConverter<T, U> Converter { get; set; }
 
         /// <summary>
         /// Property to specify and access worker object for the export.
         /// </summary>
-        public IKangarooExportWorker<U> Worker { get; set; }
+        public virtual IKangarooExportWorker<U> Worker { get; set; }
 
         /// <summary>
         /// Method for exporting the converted and filtered data utilizing the export worker.
