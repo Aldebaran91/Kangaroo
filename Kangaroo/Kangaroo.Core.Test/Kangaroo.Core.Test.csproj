@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Implementations\KangarooConverterUnitTests.cs" />
     <Compile Include="Implementations\KangarooExportWorkerUnitTests.cs" />
+    <Compile Include="Implementations\KangarooExporterUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

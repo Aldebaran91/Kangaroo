@@ -189,7 +189,10 @@ namespace Kangaroo
             return Task.Run(() => StartManualExport());
         }
 
-        public void StartTimebasedExport()
+		/// <summary>
+		/// Method for starting the export to be triggered at defined intervals.
+		/// </summary>
+		public void StartTimebasedExport()
         {
             lock (dataLock)
             {
@@ -208,7 +211,10 @@ namespace Kangaroo
             }
         }
 
-        public void StopTimebasedExport()
+		/// <summary>
+		/// Method for stopping the time triggered export. 
+		/// </summary>
+		public void StopTimebasedExport()
         {
             lock (dataLock)
             {
@@ -218,6 +224,10 @@ namespace Kangaroo
             }
         }
         
+		/// <summary>
+		/// Method for clearing the registered export hanlders, items belonging to a category can be deleted selectively by passing a category paramteter
+		/// </summary>
+		/// <param name="category">Category of export handlers to be selected for deletion.</param>
         public void ClearExporter(KangarooDataCategory category = null)
         {
             if (category == null)
@@ -231,10 +241,10 @@ namespace Kangaroo
         }
 
         /// <summary>
-        ///
+        /// Method for registering an export handler.
         /// </summary>
-        /// <param name="exportWorker"></param>
-        /// <param name="category"></param>
+        /// <param name="exportWorker">Export worker to be assigned to the exporter.</param>
+        /// <param name="category">Caterty to define which items should be handled by the exporter.</param>
         public void AddExporter(IKangarooExportWorker<T> exportWorker, KangarooDataCategory category = null)
         {
             this.ExportHandler.Add(new KangarooExportHandler(exportWorker, category));
