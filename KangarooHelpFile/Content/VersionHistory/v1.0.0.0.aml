@@ -2,7 +2,7 @@
 <topic id="3c0b2795-16aa-4aef-a948-6cc7c28dad67" revisionNumber="1">
 	<developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<introduction>
-			<para>Version 1.0 was released on TBA.
+			<para>Version 1.0 was released on April 22nd 2018.
 			</para>
 		</introduction>
 
@@ -12,7 +12,7 @@
 
 				<list class="bullet">
 					<listItem>
-						<para>You can create an instance of Kangaroo to track multiple types of objects.</para>
+						<para>First public release.</para>
 					</listItem>
 
 				</list>
