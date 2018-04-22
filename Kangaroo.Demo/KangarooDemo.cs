@@ -184,9 +184,9 @@ namespace Kangaroo.Demo
 
         public class KangarooExceptionExporter : KangarooExporter<Exception, string>
         {
-            public IKangarooConverter<Exception, string> Converter { get; set; }
+            public override IKangarooConverter<Exception, string> Converter { get; set; }
 
-            public IKangarooExportWorker<string> Worker { get; set; }
+            public override IKangarooExportWorker<string> Worker { get; set; }
         }
 
         public class KangarooExportWorkerStringToConsole : IKangarooExportWorker<string>

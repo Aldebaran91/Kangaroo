@@ -27,12 +27,12 @@ namespace Kangaroo.Core
         /// <summary>
         /// Property to specify data conversion in prepreration for the export.
         /// </summary>
-        public virtual IKangarooConverter<T, U> Converter { get; set; }
+        public abstract IKangarooConverter<T, U> Converter { get; set; }
 
         /// <summary>
         /// Property to specify and access worker object for the export.
         /// </summary>
-        public virtual IKangarooExportWorker<U> Worker { get; set; }
+        public abstract IKangarooExportWorker<U> Worker { get; set; }
 
         /// <summary>
         /// Method for exporting the converted and filtered data utilizing the export worker.
