@@ -22,7 +22,7 @@ namespace Kangaroo.Core
         /// <summary>
         /// Property to set criteria for filtering data to be exported.
         /// </summary>
-        public virtual Predicate<T> Filter { get; set; }
+        public abstract Predicate<T> Filter { get; set; }
 
         /// <summary>
         /// Property to specify data conversion in prepreration for the export.

@@ -26,7 +26,9 @@ namespace Kangaroo.Core.Test.Implementations
 
 			// Create Worker property for the custom Worker implemenation
 			public override IKangarooExportWorker<string> Worker { get; set; }
-		}
+
+            public override Predicate<Exception> Filter { get; set; }
+        }
 
 		public class KangarooConvertExcpetionToString : IKangarooConverter<Exception, string>
 		{

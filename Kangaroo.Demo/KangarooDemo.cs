@@ -187,6 +187,8 @@ namespace Kangaroo.Demo
             public override IKangarooConverter<Exception, string> Converter { get; set; }
 
             public override IKangarooExportWorker<string> Worker { get; set; }
+
+            public override Predicate<Exception> Filter { get; set; }
         }
 
         public class KangarooExportWorkerStringToConsole : IKangarooExportWorker<string>

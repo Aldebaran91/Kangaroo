@@ -196,7 +196,7 @@ namespace Kangaroo
         {
             lock (dataLock)
             {
-                if (intervalExporter == null)
+                if (intervalExporter == null && settings.Inverval.Milliseconds > 0)
                 {
                     var token = cancellationTokenSource.Token;
                     intervalExporter = Task.Run(() =>

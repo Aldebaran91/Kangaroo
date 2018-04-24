@@ -13,6 +13,8 @@ namespace Kangaroo.Docu.Implementations
 
         // Create Worker property for the custom Worker implemenation
         public override IKangarooExportWorker<string> Worker { get; set; }
+
+        public override Predicate<Exception> Filter { get; set; }
     }
 
     #endregion Example1
