@@ -3,250 +3,196 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Kangaroo.Core.Test.Implementations
 {
-	public enum MyEnum
-	{
-		Debug,
-		Warning,
-		Fatal
-	}
+    public enum MyEnum
+    {
+        Debug,
+        Warning,
+        Fatal
+    }
 
-	[TestClass]
-	public class KangarooStoreUnitTests
-	{
-		[TestMethod]
-		public void KangarooStoreTestMethodAddExporter()
-		{
-			KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
-			KangarooExporter<Exception, string> exporter =	new KangarooExceptionExporter();
-			exporter.Converter = new KangarooConvertExcpetionToString();
-			exporter.Filter = (x) =>
-			{
-				return x is NullReferenceException;
-			};
-			exporter.Worker = new KangarooExportWorkerStringToConsole();
-			kangaroo.AddExporter(exporter);
-			kangaroo.AddExporter(exporter, MyEnum.Debug);
-			//try
-			//{
-			//	throw new Exception();
-			//}
-			//catch (Exception ex)
-			//{
-			//	// Log the exception without specifying a category
-			//	kangaroo.AddData(ex);
-			//	// Log the exception with a specific category
-			//	kangaroo.AddData(ex, MyEnum.Debug);
-			//}
+    [TestClass]
+    public class KangarooStoreUnitTests
+    {
+        [TestMethod]
+        public void KangarooStoreTestMethodAddExporter()
+        {
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+            exporter.Converter = new KangarooConvertExcpetionToString();
+            exporter.Filter = (x) =>
+            {
+                return x is NullReferenceException;
+            };
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
+            kangaroo.AddExporter(exporter);
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
+        }
 
-		}
+        [TestMethod]
+        public void KangarooStoreTestMethodAddData()
+        {
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+            exporter.Converter = new KangarooConvertExcpetionToString();
+            exporter.Filter = (x) =>
+            {
+                return x is NullReferenceException;
+            };
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
+            kangaroo.AddExporter(exporter);
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
 
-		[TestMethod]
-		public void KangarooStoreTestMethodAddData()
-		{
+            // Log the exception without specifying a category
+            kangaroo.AddData(new Exception());
+            // Log the exception with a specific category
+            kangaroo.AddData(new Exception(), MyEnum.Debug);
+        }
 
-			KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
-			KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
-			exporter.Converter = new KangarooConvertExcpetionToString();
-			exporter.Filter = (x) =>
-			{
-				return x is NullReferenceException;
-			};
-			exporter.Worker = new KangarooExportWorkerStringToConsole();
-			kangaroo.AddExporter(exporter);
-			kangaroo.AddExporter(exporter, MyEnum.Debug);
-			try
-			{
-				throw new Exception();
-			}
-			catch (Exception ex)
-			{
-				// Log the exception without specifying a category
-				kangaroo.AddData(ex);
-				// Log the exception with a specific category
-				kangaroo.AddData(ex, MyEnum.Debug);
-			}
+        [TestMethod]
+        public void KangarooStoreTestMethodClearExporter()
+        {
 
-		}
-		
-		[TestMethod]
-		public void KangarooStoreTestMethodClearExporter()
-		{
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+            exporter.Converter = new KangarooConvertExcpetionToString();
+            exporter.Filter = (x) =>
+            {
+                return x is NullReferenceException;
+            };
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
+            kangaroo.AddExporter(exporter);
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
 
-			KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
-			KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
-			exporter.Converter = new KangarooConvertExcpetionToString();
-			exporter.Filter = (x) =>
-			{
-				return x is NullReferenceException;
-			};
-			exporter.Worker = new KangarooExportWorkerStringToConsole();
-			kangaroo.AddExporter(exporter);
-			kangaroo.AddExporter(exporter, MyEnum.Debug);
-			try
-			{
-				throw new Exception();
-			}
-			catch (Exception ex)
-			{
-				// Log the exception without specifying a category
-				kangaroo.AddData(ex);
-				// Log the exception with a specific category
-				kangaroo.AddData(ex, MyEnum.Debug);
-			}
+            // Log the exception without specifying a category
+            kangaroo.AddData(new Exception());
+            // Log the exception with a specific category
+            kangaroo.AddData(new Exception(), MyEnum.Debug);
 
-			kangaroo.ClearExporter();
+            kangaroo.ClearExporter();
+        }
 
-		}
+        [TestMethod]
+        public void KangarooStoreTestMethodStartManualExport()
+        {
 
-		[TestMethod]
-		public void KangarooStoreTestMethodStartManualExport()
-		{
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+            exporter.Converter = new KangarooConvertExcpetionToString();
+            exporter.Filter = (x) =>
+            {
+                return x is NullReferenceException;
+            };
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
+            kangaroo.AddExporter(exporter);
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
 
-			KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
-			KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
-			exporter.Converter = new KangarooConvertExcpetionToString();
-			exporter.Filter = (x) =>
-			{
-				return x is NullReferenceException;
-			};
-			exporter.Worker = new KangarooExportWorkerStringToConsole();
-			kangaroo.AddExporter(exporter);
-			kangaroo.AddExporter(exporter, MyEnum.Debug);
-			try
-			{
-				throw new Exception();
-			}
-			catch (Exception ex)
-			{
-				// Log the exception without specifying a category
-				kangaroo.AddData(ex);
-				// Log the exception with a specific category
-				kangaroo.AddData(ex, MyEnum.Debug);
-			}
-			kangaroo.StartManualExport();
-		}
+            // Log the exception without specifying a category
+            kangaroo.AddData(new Exception());
+            // Log the exception with a specific category
+            kangaroo.AddData(new Exception(), MyEnum.Debug);
 
-		[TestMethod]
-		public void KangarooStoreTestMethodStartManualExportAsync()
-		{
+            kangaroo.StartManualExport();
+        }
 
-			KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
-			KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
-			exporter.Converter = new KangarooConvertExcpetionToString();
-			exporter.Filter = (x) =>
-			{
-				return x is NullReferenceException;
-			};
-			exporter.Worker = new KangarooExportWorkerStringToConsole();
-			kangaroo.AddExporter(exporter);
-			kangaroo.AddExporter(exporter, MyEnum.Debug);
-			try
-			{
-				throw new Exception();
-			}
-			catch (Exception ex)
-			{
-				// Log the exception without specifying a category
-				kangaroo.AddData(ex);
-				// Log the exception with a specific category
-				kangaroo.AddData(ex, MyEnum.Debug);
-			}
+        [TestMethod]
+        public void KangarooStoreTestMethodStartManualExportAsync()
+        {
 
-			kangaroo.StartManualExportAsync();
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+            exporter.Converter = new KangarooConvertExcpetionToString();
+            exporter.Filter = (x) =>
+            {
+                return x is NullReferenceException;
+            };
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
+            kangaroo.AddExporter(exporter);
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
 
-		}
+            // Log the exception without specifying a category
+            kangaroo.AddData(new Exception());
+            // Log the exception with a specific category
+            kangaroo.AddData(new Exception(), MyEnum.Debug);
 
-		[TestMethod]
-		public void KangarooStoreTestMethodStartTimebasedExport()
-		{
+            kangaroo.StartManualExportAsync();
+        }
 
-			KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
-			KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
-			exporter.Converter = new KangarooConvertExcpetionToString();
-			exporter.Filter = (x) =>
-			{
-				return x is NullReferenceException;
-			};
-			exporter.Worker = new KangarooExportWorkerStringToConsole();
-			kangaroo.AddExporter(exporter);
-			kangaroo.AddExporter(exporter, MyEnum.Debug);
-			try
-			{
-				throw new Exception();
-			}
-			catch (Exception ex)
-			{
-				// Log the exception without specifying a category
-				kangaroo.AddData(ex);
-				// Log the exception with a specific category
-				kangaroo.AddData(ex, MyEnum.Debug);
-			}
+        [TestMethod]
+        public void KangarooStoreTestMethodStartTimebasedExport()
+        {
 
-			kangaroo.StartTimebasedExport();
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+            exporter.Converter = new KangarooConvertExcpetionToString();
+            exporter.Filter = (x) =>
+            {
+                return x is NullReferenceException;
+            };
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
+            kangaroo.AddExporter(exporter);
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
 
-		}
+            // Log the exception without specifying a category
+            kangaroo.AddData(new Exception());
+            // Log the exception with a specific category
+            kangaroo.AddData(new Exception(), MyEnum.Debug);
 
-		[TestMethod]
-		public void KangarooStoreTestMethodStopTimebasedExport()
-		{
+            kangaroo.StartTimebasedExport();
+        }
 
-			KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
-			KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
-			exporter.Converter = new KangarooConvertExcpetionToString();
-			exporter.Filter = (x) =>
-			{
-				return x is NullReferenceException;
-			};
-			exporter.Worker = new KangarooExportWorkerStringToConsole();
-			kangaroo.AddExporter(exporter);
-			kangaroo.AddExporter(exporter, MyEnum.Debug);
-			try
-			{
-				throw new Exception();
-			}
-			catch (Exception ex)
-			{
-				// Log the exception without specifying a category
-				kangaroo.AddData(ex);
-				// Log the exception with a specific category
-				kangaroo.AddData(ex, MyEnum.Debug);
-			}
+        [TestMethod]
+        public void KangarooStoreTestMethodStopTimebasedExport()
+        {
 
-			
-			kangaroo.StopTimebasedExport();
+            KangarooStore<Exception> kangaroo = new KangarooStore<Exception>();
+            KangarooExporter<Exception, string> exporter = new KangarooExceptionExporter();
+            exporter.Converter = new KangarooConvertExcpetionToString();
+            exporter.Filter = (x) =>
+            {
+                return x is NullReferenceException;
+            };
+            exporter.Worker = new KangarooExportWorkerStringToConsole();
+            kangaroo.AddExporter(exporter);
+            kangaroo.AddExporter(exporter, MyEnum.Debug);
 
-		}
+            // Log the exception without specifying a category
+            kangaroo.AddData(new Exception());
+            // Log the exception with a specific category
+            kangaroo.AddData(new Exception(), MyEnum.Debug);
 
-		public class KangarooExceptionExporter : KangarooExporter<Exception, string>
-		{
-			// Create Converter property for the custom Converter implementation
-			public override IKangarooConverter<Exception, string> Converter { get; set; }
+            kangaroo.StopTimebasedExport();
+        }
 
-			// Create Worker property for the custom Worker implemenation
-			public override IKangarooExportWorker<string> Worker { get; set; }
+        public class KangarooExceptionExporter : KangarooExporter<Exception, string>
+        {
+            // Create Converter property for the custom Converter implementation
+            public override IKangarooConverter<Exception, string> Converter { get; set; }
+
+            // Create Worker property for the custom Worker implemenation
+            public override IKangarooExportWorker<string> Worker { get; set; }
 
             public override Predicate<Exception> Filter { get; set; }
         }
 
-		public class KangarooConvertExcpetionToString : IKangarooConverter<Exception, string>
-		{
-			public string Convert(Exception data)
-			{
-				return data.ToString();
-			}
-		}
+        public class KangarooConvertExcpetionToString : IKangarooConverter<Exception, string>
+        {
+            public string Convert(Exception data)
+            {
+                return data.ToString();
+            }
+        }
 
-		public class KangarooExportWorkerStringToConsole : IKangarooExportWorker<string>
-		{
-			public void Export(string[] input)
-			{
-				foreach (var item in input)
-				{
-					Console.Write(item);
-				}
-			}
-		}
-	}
+        public class KangarooExportWorkerStringToConsole : IKangarooExportWorker<string>
+        {
+            public void Export(string[] input)
+            {
+                foreach (var item in input)
+                {
+                    Console.Write(item);
+                }
+            }
+        }
+    }
 
 
 

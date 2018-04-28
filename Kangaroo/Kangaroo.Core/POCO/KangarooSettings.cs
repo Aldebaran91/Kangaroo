@@ -17,13 +17,21 @@ namespace Kangaroo.Core
         /// Integer member to maximize the number of collected data items, in case of cumulative export.
         /// Corresponding property provides external access to the appropriate value.
         /// </summary>
-        private readonly long maxStoredObjects = -1;
+        private readonly uint maxStoredObjects = 0;
 
-        public KangarooSettings(long maxStoredObjects = 0)
+        /// <summary>
+        /// Creates a new KangarooSetting with max items in queue.
+        /// </summary>
+        /// <param name="maxStoredObjects"></param>
+        public KangarooSettings(uint maxStoredObjects = 0)
         {
             this.maxStoredObjects = maxStoredObjects;
         }
 
+        /// <summary>
+        /// Creates a new KangarooSetting with a timespan interval.
+        /// </summary>
+        /// <param name="interval"></param>
         public KangarooSettings(TimeSpan interval)
         {
             this.interval = interval;

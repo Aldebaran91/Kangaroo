@@ -54,27 +54,31 @@ namespace Kangaroo
         /// </summary>
         private KangarooSettings settings;
 
+        /// <summary>
+        /// Contains a delegate which should be used if data will be added.
+        /// </summary>
+        private Action<T, Enum> ExportCommand;
+
         #endregion Fields
 
         #region Constructor
 
         /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public KangarooStore()
-        {
-            this.settings = new KangarooSettings();
-        }
-
-        /// <summary>
         /// Constructor taking custom exporter settings.
         /// </summary>
         /// <param name="settings">Parateter for custom exporter settings.</param>
-        public KangarooStore(KangarooSettings settings)
+        public KangarooStore(KangarooSettings settings = null)
         {
-            this.settings = settings;
+            if (settings == null)
+            {
+                this.settings = new KangarooSettings();
+            }
+            else
+            {
+                this.settings = settings;
+            }
 
-            if (settings.Inverval != TimeSpan.Zero)
+            if (this.settings.Inverval != TimeSpan.Zero)
             {
                 StartTimebasedExport();
             }
@@ -100,7 +104,7 @@ namespace Kangaroo
         public KangarooSettings Settings { get => settings; set => settings = value; }
 
         #endregion Properties
-        
+
         /// <summary>
         /// Overloaded method for addig data to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
         /// </summary>
@@ -108,16 +112,70 @@ namespace Kangaroo
         /// <param name="category">Provides the ability to categories the data.</param>
         public void AddData(T data, Enum category = null)
         {
-            int count = 0;
-            lock (dataLock)
+            switch (settings.MaxStoredObjects)
             {
-                this.data.Add(new KangarooData(data, category));
-                count = this.data.Count;
+                case 0:
+                    {
+                        lock (dataLock)
+                        {
+                            this.data.Add(new KangarooData(data, category));
+                        }
+                        break;
+                    }
+                case 1:
+                    {
+                        DirectExport(data, category);
+                        break;
+                    }
+                default:
+                    {
+                        int count = 0;
+                        lock (dataLock)
+                        {
+                            this.data.Add(new KangarooData(data, category));
+                            count = this.data.Count;
+                            if (settings.MaxStoredObjects > 0 && count >= settings.MaxStoredObjects)
+                            {
+                                StartManualExport();
+                            }
+                        }
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// Direct export without adding data to the queue
+        /// </summary>
+        /// <param name="data">Data which should be exported</param>
+        /// <param name="category">Category for data</param>
+        private void DirectExport(T data, Enum category = null)
+        {
+            T[] exData = new T[] { data };
+
+            List<Exception> exceptions = new List<Exception>();
+            for (int i = 0; i < ExportHandler.Count; i++)
+            {
+                try
+                {
+                    if (ExportHandler[i].Category == null && category == null)
+                    {
+                        ExportHandler[i].ExportWorker.Export(exData);
+                    }
+                    else if (category != null && category.Equals(ExportHandler[i].Category))
+                    {
+                        ExportHandler[i].ExportWorker.Export(exData);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
             }
 
-            if (settings.MaxStoredObjects > 0 && count >= settings.MaxStoredObjects)
+            if (exceptions.Count > 0)
             {
-                StartManualExport();
+                throw new AggregateException(exceptions.ToArray());
             }
         }
 
@@ -189,14 +247,14 @@ namespace Kangaroo
             return Task.Run(() => StartManualExport());
         }
 
-		/// <summary>
-		/// Method for starting the export to be triggered at defined intervals.
-		/// </summary>
-		public void StartTimebasedExport()
+        /// <summary>
+        /// Method for starting the export to be triggered at defined intervals.
+        /// </summary>
+        public void StartTimebasedExport()
         {
             lock (dataLock)
             {
-                if (intervalExporter == null && settings.Inverval.Milliseconds > 0)
+                if (intervalExporter == null && settings.Inverval.TotalMilliseconds > 0)
                 {
                     var token = cancellationTokenSource.Token;
                     intervalExporter = Task.Run(() =>
@@ -211,10 +269,10 @@ namespace Kangaroo
             }
         }
 
-		/// <summary>
-		/// Method for stopping the time triggered export. 
-		/// </summary>
-		public void StopTimebasedExport()
+        /// <summary>
+        /// Method for stopping the time triggered export. 
+        /// </summary>
+        public void StopTimebasedExport()
         {
             lock (dataLock)
             {
