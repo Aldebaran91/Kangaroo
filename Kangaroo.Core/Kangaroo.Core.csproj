@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Kangaroo.Core.Interfaces\Kangaroo.Core.Interfaces.csproj" />
+    <ProjectReference Include="..\Kangaroo.Core.Interfaces\Kangaroo.Core.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

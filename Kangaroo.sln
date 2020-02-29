@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.Core", "Kangaroo\Kangaroo.Core\Kangaroo.Core.csproj", "{AB236705-C82F-46D9-905E-2F552D140A1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.Tests", "Kangaroo.Tests\Kangaroo.Tests.csproj", "{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Tests", "Kangaroo.Tests\Kangaroo.Tests.csproj", "{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.HowToDemo", "Kangaroo.HowToDemo\Kangaroo.HowToDemo.csproj", "{73A60BA6-A153-48CB-B8D8-07A3717C09D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.HowToDemo", "Kangaroo.HowToDemo\Kangaroo.HowToDemo.csproj", "{73A60BA6-A153-48CB-B8D8-07A3717C09D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.Core.Interfaces", "Kangaroo.Core.Interfaces\Kangaroo.Core.Interfaces.csproj", "{A8A80E64-6334-4377-827D-6CA266269805}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Core.Interfaces", "Kangaroo.Core.Interfaces\Kangaroo.Core.Interfaces.csproj", "{A8A80E64-6334-4377-827D-6CA266269805}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.Core", "Kangaroo.Core\Kangaroo.Core.csproj", "{D16D1857-A83A-4360-AD73-B7F97890991E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AB236705-C82F-46D9-905E-2F552D140A1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB236705-C82F-46D9-905E-2F552D140A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB236705-C82F-46D9-905E-2F552D140A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB236705-C82F-46D9-905E-2F552D140A1B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{A8A80E64-6334-4377-827D-6CA266269805}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8A80E64-6334-4377-827D-6CA266269805}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8A80E64-6334-4377-827D-6CA266269805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D16D1857-A83A-4360-AD73-B7F97890991E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D16D1857-A83A-4360-AD73-B7F97890991E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D16D1857-A83A-4360-AD73-B7F97890991E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D16D1857-A83A-4360-AD73-B7F97890991E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

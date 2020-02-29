@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Kangaroo.Core\Kangaroo.Core.csproj" />
     <ProjectReference Include="..\Kangaroo\Kangaroo.Core\Kangaroo.Core.csproj" />
   </ItemGroup>
 
