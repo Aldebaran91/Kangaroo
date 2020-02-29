@@ -14,7 +14,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Implementations\" />
+    <Compile Remove="Implementations\**" />
+    <EmbeddedResource Remove="Implementations\**" />
+    <None Remove="Implementations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Kangaroo.Core.Interfaces\Kangaroo.Core.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

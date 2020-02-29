@@ -10,13 +10,6 @@ namespace Kangaroo.Core
     /// </summary>
     /// <typeparam name="T">T is the generic type for the input</typeparam>
     /// <typeparam name="U">U is the generic type for the export</typeparam>
-    /// <example>
-    /// <code
-    /// source="..\Kangaroo.Docu\Implementations\KangarooExporterExamples.cs"
-    /// region="Example1"
-    /// title="How to create a custom exporter implementation"
-    /// language="csharp"/>
-    /// </example>
 	public abstract class KangarooExporter<T, U> : IKangarooExportManager<T, U>, IKangarooExportWorker<T>
     {
         /// <summary>

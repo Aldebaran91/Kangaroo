@@ -12,12 +12,6 @@ namespace Kangaroo
     /// Primary class of the Kangaroo library.
     /// </summary>
     /// <typeparam name="T">The generic type parameter.</typeparam>
-    /// <example>
-    /// <code
-    /// source="..\Kangaroo.Docu\KangarooExample.cs"
-    /// region="Example1"
-    /// title="How to use Kangaroo library"/>
-    /// </example>
     public sealed class KangarooStore<T>
     {
         private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -97,7 +91,7 @@ namespace Kangaroo
         /// <summary>
         /// Enumerable property with a collection of specific/custom export handlers to be used.
         /// </summary>
-        private IList<KangarooExportHandler> ExportHandler { get; set; } = new List<KangarooExportHandler>();
+        private ConcurrentQueue<KangarooExportHandler> ExportHandler { get; set; } = new ConcurrentQueue<KangarooExportHandler>();
 
         /// <summary>
         /// Property for export settings as defined by specific/custom implementation.
@@ -117,10 +111,7 @@ namespace Kangaroo
             {
                 case 0:
                     {
-                        lock (dataLock)
-                        {
-                            this.data.Enqueue(new KangarooData(data, category));
-                        }
+                        this.data.Enqueue(new KangarooData(data, category));
                         break;
                     }
                 case 1:
@@ -155,17 +146,18 @@ namespace Kangaroo
             T[] exData = new T[] { data };
 
             List<Exception> exceptions = new List<Exception>();
-            for (int i = 0; i < ExportHandler.Count; i++)
+            var enumerator = ExportHandler.GetEnumerator();
+            while (enumerator.MoveNext())
             {
                 try
                 {
-                    if (ExportHandler[i].Category == null && category == null)
+                    if (enumerator.Current.Category == null && category == null)
                     {
-                        ExportHandler[i].ExportWorker.Export(exData);
+                        enumerator.Current.ExportWorker.Export(exData);
                     }
-                    else if (category != null && category.Equals(ExportHandler[i].Category))
+                    else if (category != null && category.Equals(enumerator.Current.Category))
                     {
-                        ExportHandler[i].ExportWorker.Export(exData);
+                        enumerator.Current.ExportWorker.Export(exData);
                     }
                 }
                 catch (Exception ex)
@@ -214,17 +206,18 @@ namespace Kangaroo
             }
 
             List<Exception> exceptions = new List<Exception>();
-            for (int i = 0; i < ExportHandler.Count; i++)
+            var enumerator = ExportHandler.GetEnumerator();
+            while (enumerator.MoveNext())
             {
                 try
                 {
-                    if (ExportHandler[i].Category == null)
+                    if (enumerator.Current.Category == null)
                     {
-                        ExportHandler[i].ExportWorker.Export(dataToExport_uncategorized.ToArray());
+                        enumerator.Current.ExportWorker.Export(dataToExport_uncategorized.ToArray());
                     }
-                    else if (dataToExport.ContainsKey(ExportHandler[i].Category))
+                    else if (dataToExport.ContainsKey(enumerator.Current.Category))
                     {
-                        ExportHandler[i].ExportWorker.Export(dataToExport[ExportHandler[i].Category].ToArray());
+                        enumerator.Current.ExportWorker.Export(dataToExport[enumerator.Current.Category].ToArray());
                     }
                 }
                 catch (Exception ex)
@@ -295,7 +288,9 @@ namespace Kangaroo
             }
             else
             {
-                this.ExportHandler = this.ExportHandler.Where(x => x.Category.Equals(category)).ToList();
+                var list = this.ExportHandler.Where(x => !x.Category.Equals(category)).ToList();
+                this.ExportHandler.Clear();
+                this.ExportHandler = new ConcurrentQueue<KangarooExportHandler>(list);
             }
         }
 
@@ -306,7 +301,7 @@ namespace Kangaroo
         /// <param name="category">Caterty to define which items should be handled by the exporter.</param>
         public void AddExporter(IKangarooExportWorker<T> exportWorker, Enum category = null)
         {
-            this.ExportHandler.Add(new KangarooExportHandler(exportWorker, category));
+            this.ExportHandler.Enqueue(new KangarooExportHandler(exportWorker, category));
         }
     }
 }

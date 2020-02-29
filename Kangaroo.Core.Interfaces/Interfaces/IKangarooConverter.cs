@@ -5,13 +5,6 @@
     /// </summary>
     /// <typeparam name="T">T is the generic type for the input.</typeparam>
     /// <typeparam name="U">U is the generic type for the export.</typeparam>
-    /// <example>
-    /// <code
-    /// source="..\Kangaroo.Docu\Implementations\KangarooConverterExamples.cs"
-    /// region="Example1"
-    /// title="How create a converter for the export manager"
-    /// language="csharp"/>
-    /// </example>
     public interface IKangarooConverter<in T, out U>
     {
         /// <summary>
