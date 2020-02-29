@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.Core", "Kangaroo\Kangaroo.Core\Kangaroo.Core.csproj", "{AB236705-C82F-46D9-905E-2F552D140A1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Core.Test", "Kangaroo\Kangaroo.Core.Test\Kangaroo.Core.Test.csproj", "{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Tests", "Kangaroo.Tests\Kangaroo.Tests.csproj", "{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kangaroo.Docu", "Kangaroo.Docu\Kangaroo.Docu.csproj", "{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}"
-EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "KangarooHelpFile", "KangarooHelpFile\KangarooHelpFile.shfbproj", "{D030E5F4-67E7-4B75-A78F-873D4813416D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.Demo", "Kangaroo.Demo\Kangaroo.Demo.csproj", "{7DB32760-114C-496C-B5E9-30F6E2372749}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kangaroo.HowToDemo", "Kangaroo.HowToDemo\Kangaroo.HowToDemo.csproj", "{73A60BA6-A153-48CB-B8D8-07A3717C09D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,22 +19,14 @@ Global
 		{AB236705-C82F-46D9-905E-2F552D140A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB236705-C82F-46D9-905E-2F552D140A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB236705-C82F-46D9-905E-2F552D140A1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F952A52-710B-4542-AB5A-0E0BA57DCB8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26B5C13F-08C2-4AEB-B074-1ECE7F7C154F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D030E5F4-67E7-4B75-A78F-873D4813416D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D030E5F4-67E7-4B75-A78F-873D4813416D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D030E5F4-67E7-4B75-A78F-873D4813416D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D030E5F4-67E7-4B75-A78F-873D4813416D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DB32760-114C-496C-B5E9-30F6E2372749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DB32760-114C-496C-B5E9-30F6E2372749}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DB32760-114C-496C-B5E9-30F6E2372749}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DB32760-114C-496C-B5E9-30F6E2372749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17FD955A-ED94-46AC-8BCB-D5C9F695C1B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73A60BA6-A153-48CB-B8D8-07A3717C09D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A60BA6-A153-48CB-B8D8-07A3717C09D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A60BA6-A153-48CB-B8D8-07A3717C09D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73A60BA6-A153-48CB-B8D8-07A3717C09D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

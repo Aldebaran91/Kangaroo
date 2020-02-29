@@ -1,5 +1,6 @@
 ﻿using Kangaroo.Core;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -91,7 +92,7 @@ namespace Kangaroo
         /// <summary>
         /// Enumerable property with a collection of data objects to be exported.
         /// </summary>
-        private IList<KangarooData> data { get; } = new List<KangarooData>();
+        private ConcurrentQueue<KangarooData> data { get; } = new ConcurrentQueue<KangarooData>();
 
         /// <summary>
         /// Enumerable property with a collection of specific/custom export handlers to be used.
@@ -118,7 +119,7 @@ namespace Kangaroo
                     {
                         lock (dataLock)
                         {
-                            this.data.Add(new KangarooData(data, category));
+                            this.data.Enqueue(new KangarooData(data, category));
                         }
                         break;
                     }
@@ -132,7 +133,7 @@ namespace Kangaroo
                         int count = 0;
                         lock (dataLock)
                         {
-                            this.data.Add(new KangarooData(data, category));
+                            this.data.Enqueue(new KangarooData(data, category));
                             count = this.data.Count;
                             if (settings.MaxStoredObjects > 0 && count >= settings.MaxStoredObjects)
                             {

@@ -2,9 +2,9 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Kangaroo.Demo
+namespace Kangaroo.HowToDemo
 {
-    internal class KangarooDemo
+    class Program
     {
         public enum MyEnum
         {
@@ -155,9 +155,9 @@ namespace Kangaroo.Demo
 
             // Add filter
             exporter.Filter = (x) =>
-                {
-                    return x is ArgumentException;
-                };
+            {
+                return x is ArgumentException;
+            };
 
             // Add exporter
             exporter.Worker = new KangarooExportWorkerStringToConsole();
