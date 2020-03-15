@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Kangaroo.Core.Test.Implementations
+namespace Kangaroo.Core.Test.Implementations.IntegrationTests
 {
 	[TestClass]
-	public class KangarooExporterUnitTests
+	public class KangarooExporterTests
 	{
 		[TestMethod]
 		public void KangarooExporterTestMethodExport()

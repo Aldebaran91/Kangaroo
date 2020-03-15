@@ -16,17 +16,18 @@ namespace Kangaroo
     {
         private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private Task intervalExporter;
-        private readonly object dataLock = new object();
 
         private struct KangarooData
         {
             public T Data;
             public Enum Category;
+            internal DateTime DateTimeOfCollect;
 
             public KangarooData(T data, Enum category)
             {
                 this.Data = data;
                 this.Category = category;
+                this.DateTimeOfCollect = DateTime.UtcNow;
             }
         }
 
@@ -64,15 +65,8 @@ namespace Kangaroo
         /// <param name="settings">Parateter for custom exporter settings.</param>
         public KangarooStore(KangarooSettings settings = null)
         {
-            if (settings == null)
-            {
-                this.settings = new KangarooSettings();
-            }
-            else
-            {
-                this.settings = settings;
-            }
-
+            this.settings = settings ?? new KangarooSettings();
+            
             if (this.settings.Inverval != TimeSpan.Zero)
             {
                 StartTimebasedExport();
@@ -84,12 +78,12 @@ namespace Kangaroo
         #region Properties
 
         /// <summary>
-        /// Enumerable property with a collection of data objects to be exported.
+        /// Queue property with a collection of data objects to be exported.
         /// </summary>
         private ConcurrentQueue<KangarooData> data { get; } = new ConcurrentQueue<KangarooData>();
 
         /// <summary>
-        /// Enumerable property with a collection of specific/custom export handlers to be used.
+        /// Queue property with a collection of specific/custom export handlers to be used.
         /// </summary>
         private ConcurrentQueue<KangarooExportHandler> ExportHandler { get; set; } = new ConcurrentQueue<KangarooExportHandler>();
 
@@ -122,14 +116,11 @@ namespace Kangaroo
                 default:
                     {
                         int count = 0;
-                        lock (dataLock)
+                        this.data.Enqueue(new KangarooData(data, category));
+                        count = this.data.Count;
+                        if (settings.MaxStoredObjects > 0 && count >= settings.MaxStoredObjects)
                         {
-                            this.data.Enqueue(new KangarooData(data, category));
-                            count = this.data.Count;
-                            if (settings.MaxStoredObjects > 0 && count >= settings.MaxStoredObjects)
-                            {
-                                StartManualExport();
-                            }
+                            StartManualExport();
                         }
                         break;
                     }
@@ -172,39 +163,80 @@ namespace Kangaroo
             }
         }
 
+        public void StartManualExport()
+        {
+            StartExportTimeBased(DateTime.UtcNow);
+        }
+
         /// <summary>
         /// Method for staring the export.
         /// </summary>
-        public void StartManualExport()
+        internal void StartExporSizeBased()
         {
-            KangarooData[] dataSnapshot = null;
-            lock (dataLock)
-            {
-                dataSnapshot = new KangarooData[data.Count];
-                data.CopyTo(dataSnapshot, 0);
-                this.data.Clear();
-            }
-
             Dictionary<Enum, List<T>> dataToExport = new Dictionary<Enum, List<T>>();
             List<T> dataToExport_uncategorized = new List<T>();
 
-            for (int i = 0; i < dataSnapshot.Length; i++)
+            while (dataToExport.Count < settings.MaxStoredObjects && data.Count > 0)
             {
-                if (dataSnapshot[i].Category == null)
+                if (data.TryDequeue(out var dataSnapshot))
                 {
-                    dataToExport_uncategorized.Add(dataSnapshot[i].Data);
-                }
-                else
-                {
-                    if (dataToExport.ContainsKey(dataSnapshot[i].Category) == false)
+                    if (dataSnapshot.Category == null)
                     {
-                        dataToExport.Add(dataSnapshot[i].Category, new List<T>());
+                        dataToExport_uncategorized.Add(dataSnapshot.Data);
                     }
+                    else
+                    {
+                        if (dataToExport.ContainsKey(dataSnapshot.Category) == false)
+                        {
+                            dataToExport.Add(dataSnapshot.Category, new List<T>());
+                        }
 
-                    dataToExport[dataSnapshot[i].Category].Add(dataSnapshot[i].Data);
+                        dataToExport[dataSnapshot.Category].Add(dataSnapshot.Data);
+                    }
                 }
             }
 
+            DataToExport(dataToExport, dataToExport_uncategorized);
+        }
+
+        internal void StartExportTimeBased(DateTime until)
+        {
+            Dictionary<Enum, List<T>> dataToExport = new Dictionary<Enum, List<T>>();
+            List<T> dataToExport_uncategorized = new List<T>();
+
+            while (data.Count > 0)
+            {
+                if (data.TryDequeue(out var dataSnapshot))
+                {
+                    if (dataSnapshot.DateTimeOfCollect > until)
+                        continue;
+
+                    if (dataSnapshot.Category == null)
+                    {
+                        dataToExport_uncategorized.Add(dataSnapshot.Data);
+                    }
+                    else
+                    {
+                        if (dataToExport.ContainsKey(dataSnapshot.Category) == false)
+                        {
+                            dataToExport.Add(dataSnapshot.Category, new List<T>());
+                        }
+
+                        dataToExport[dataSnapshot.Category].Add(dataSnapshot.Data);
+                    }
+                }
+            }
+
+            DataToExport(dataToExport, dataToExport_uncategorized);
+        }
+
+        /// <summary>
+        /// Method to export categorized data to the export handlers.
+        /// </summary>
+        /// <param name="dataToExport"></param>
+        /// <param name="dataToExport_uncategorized"></param>
+        private void DataToExport(Dictionary<Enum, List<T>> dataToExport, List<T> dataToExport_uncategorized)
+        {
             List<Exception> exceptions = new List<Exception>();
             var enumerator = ExportHandler.GetEnumerator();
             while (enumerator.MoveNext())
@@ -246,20 +278,17 @@ namespace Kangaroo
         /// </summary>
         public void StartTimebasedExport()
         {
-            lock (dataLock)
+            if (intervalExporter == null && settings.Inverval.TotalMilliseconds > 0)
             {
-                if (intervalExporter == null && settings.Inverval.TotalMilliseconds > 0)
+                var token = cancellationTokenSource.Token;
+                intervalExporter = Task.Run(() =>
                 {
-                    var token = cancellationTokenSource.Token;
-                    intervalExporter = Task.Run(() =>
+                    while (!token.IsCancellationRequested)
                     {
-                        while (!token.IsCancellationRequested)
-                        {
-                            Task.Delay(settings.Inverval).Wait();
-                            StartManualExport();
-                        }
-                    });
-                }
+                        Task.Delay(settings.Inverval).Wait();
+                        StartExportTimeBased(DateTime.UtcNow);
+                    }
+                });
             }
         }
 
@@ -268,12 +297,9 @@ namespace Kangaroo
         /// </summary>
         public void StopTimebasedExport()
         {
-            lock (dataLock)
-            {
-                cancellationTokenSource.Cancel();
-                cancellationTokenSource = new CancellationTokenSource();
-                intervalExporter = null;
-            }
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource = new CancellationTokenSource();
+            intervalExporter = null;
         }
 
         /// <summary>

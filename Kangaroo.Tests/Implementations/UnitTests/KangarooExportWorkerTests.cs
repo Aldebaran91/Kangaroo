@@ -2,10 +2,10 @@
 using System;
 using System.IO;
 
-namespace Kangaroo.Core.Test.Implementations
+namespace Kangaroo.Core.Test.Implementations.UnitTests
 {
     [TestClass]
-    public class KangarooExportWorkerUnitTests
+    public class KangarooExportWorkerTests
     {
         [TestMethod]
         public void KangarooExportWorkerTestMethodExport()

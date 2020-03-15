@@ -8,7 +8,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Kangaroo.Core.Interfaces\Kangaroo.Core.Interfaces.csproj" />
     <ProjectReference Include="..\Kangaroo.Core\Kangaroo.Core.csproj" />
-    <ProjectReference Include="..\Kangaroo\Kangaroo.Core\Kangaroo.Core.csproj" />
   </ItemGroup>
 
 </Project>

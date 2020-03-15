@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Kangaroo.Core.Test.Implementations
+namespace Kangaroo.Core.Test.Implementations.UnitTests
 {
     [TestClass]
-    public class KangarooConverterUnitTests
+    public class KangarooConverterTests
     {
         [TestMethod]
         public void KangarooConverterTestMethodConvert()

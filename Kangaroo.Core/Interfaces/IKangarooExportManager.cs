@@ -5,7 +5,7 @@
     /// </summary>
     /// <typeparam name="T">Generic type for the input.</typeparam>
     /// <typeparam name="U">Generic type for the export</typeparam>
-    public interface IKangarooExportManager<T, U>
+    internal interface IKangarooExportManager<T, U>
     {
         /// <summary>
         /// Property to specify data conversion in prepreration for the export.

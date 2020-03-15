@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Kangaroo.Core.Test.Implementations
+namespace Kangaroo.Core.Test.Implementations.IntegrationTests
 {
     public enum MyEnum
     {
@@ -11,7 +11,7 @@ namespace Kangaroo.Core.Test.Implementations
     }
 
     [TestClass]
-    public class KangarooStoreUnitTests
+    public class KangarooStoreTests
     {
         [TestMethod]
         public void KangarooStoreTestMethodAddExporter()
