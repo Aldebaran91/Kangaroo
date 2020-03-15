@@ -50,22 +50,24 @@ namespace Kangaroo
         /// </summary>
         private KangarooSettings settings;
 
-        /// <summary>
-        /// Contains a delegate which should be used if data will be added.
-        /// </summary>
-        private Action<T, Enum> ExportCommand;
-
         #endregion Fields
 
         #region Constructor
 
         /// <summary>
+        /// Constructor taking standard exporter settings.
+        /// </summary>
+        public KangarooStore() : this(new KangarooSettings())
+        {
+        }
+
+        /// <summary>
         /// Constructor taking custom exporter settings.
         /// </summary>
         /// <param name="settings">Parateter for custom exporter settings.</param>
-        public KangarooStore(KangarooSettings settings = null)
+        public KangarooStore(KangarooSettings settings)
         {
-            this.settings = settings ?? new KangarooSettings();
+            this.settings = settings;
             
             if (this.settings.Inverval != TimeSpan.Zero)
             {
@@ -95,11 +97,20 @@ namespace Kangaroo
         #endregion Properties
 
         /// <summary>
-        /// Overloaded method for addig data to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
+        ///  Method for addig data to the collection of data objects to be exported.
+        /// </summary>
+        /// <param name="data"></param>
+        public void AddData(T data)
+        {
+            AddData(data, null);
+        }
+
+        /// <summary>
+        /// Method for addig data to the collection of data objects to be exported, and also passing the category for the data to be assigned to.
         /// </summary>
         /// <param name="data">The data which should be exported later.</param>
         /// <param name="category">Provides the ability to categories the data.</param>
-        public void AddData(T data, Enum category = null)
+        public void AddData(T data, Enum category)
         {
             switch (settings.MaxStoredObjects)
             {
@@ -303,20 +314,31 @@ namespace Kangaroo
         }
 
         /// <summary>
+        /// Clear all registered export handlers.
+        /// </summary>
+        public void ClearExporter()
+        {
+            ClearExporter(null);
+        }
+
+        /// <summary>
         /// Method for clearing the registered export hanlders, items belonging to a category can be deleted selectively by passing a category paramteter
         /// </summary>
         /// <param name="category">Category of export handlers to be selected for deletion.</param>
-        public void ClearExporter(Enum category = null)
+        public void ClearExporter(params Enum[] category)
         {
-            if (category == null)
+            if (category == null || category.Length == 0)
             {
                 this.ExportHandler.Clear();
             }
             else
             {
-                var list = this.ExportHandler.Where(x => !x.Category.Equals(category)).ToList();
-                this.ExportHandler.Clear();
-                this.ExportHandler = new ConcurrentQueue<KangarooExportHandler>(list);
+                foreach (var cat in category)
+                {
+                    var list = this.ExportHandler.Where(x => !x.Category.Equals(cat)).ToList();
+                    this.ExportHandler.Clear();
+                    this.ExportHandler = new ConcurrentQueue<KangarooExportHandler>(list);
+                }
             }
         }
 
