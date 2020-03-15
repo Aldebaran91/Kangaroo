@@ -17,7 +17,7 @@ no impact in already implemented projects.
 
 ## Installation
 Add it to your .Net Framework or DotNet project. The library 
-Kangaroo supports .Net Standard 1.0.
+Kangaroo supports .Net Standard 2.1.
 
 ## Contribution
 Create a fork of the project into your own reposity. Make 
